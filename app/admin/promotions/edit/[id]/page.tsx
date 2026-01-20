@@ -1,0 +1,135 @@
+"use client";
+
+import { Edit, useForm } from "@refinedev/antd";
+import { Form, Input, InputNumber, Switch, DatePicker, Upload, Button } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { supabaseClient } from "@/lib/supabase";
+import { useState } from "react";
+import dayjs from "dayjs";
+
+const { TextArea } = Input;
+
+export default function PromotionEdit() {
+  const { formProps, saveButtonProps } = useForm({
+    resource: "promotions",
+  });
+  const [uploading, setUploading] = useState(false);
+
+  const handleImageUpload = async (file: any) => {
+    setUploading(true);
+    
+    const sanitizedName = file.name
+      .replace(/\s+/g, '_')
+      .replace(/[^\w.-]/g, '')
+      .toLowerCase();
+    
+    const fileName = `${Date.now()}_${sanitizedName}`;
+    
+    const { error: storageError } = await supabaseClient.storage
+      .from("images")
+      .upload(fileName, file);
+
+    if (storageError) {
+      console.error("Upload error:", storageError);
+      setUploading(false);
+      return;
+    }
+
+    const { data: { publicUrl } } = supabaseClient.storage
+      .from("images")
+      .getPublicUrl(fileName);
+
+    formProps.form?.setFieldsValue({
+      image: publicUrl
+    });
+
+    setUploading(false);
+    return false;
+  };
+
+  return (
+    <Edit saveButtonProps={saveButtonProps}>
+      <Form {...formProps} layout="vertical">
+        <Form.Item
+          label="Title"
+          name="title"
+          rules={[{ required: true }]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Description"
+          name="description"
+          rules={[{ required: true }]}
+        >
+          <TextArea rows={4} />
+        </Form.Item>
+
+        <Form.Item
+          label="Discount Text (e.g., '20% OFF', '$10 OFF')"
+          name="discount_text"
+        >
+          <Input placeholder="20% OFF" />
+        </Form.Item>
+
+        <Form.Item label="Promotion Image">
+          <Upload 
+            beforeUpload={handleImageUpload} 
+            maxCount={1}
+          >
+            <Button icon={<UploadOutlined />} loading={uploading}>
+              Change Image
+            </Button>
+          </Upload>
+        </Form.Item>
+
+        <Form.Item name="image" hidden>
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Valid From"
+          name="valid_from"
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker style={{ width: '100%' }} />
+        </Form.Item>
+
+        <Form.Item
+          label="Valid Until"
+          name="valid_until"
+          getValueProps={(value) => ({
+            value: value ? dayjs(value) : undefined,
+          })}
+        >
+          <DatePicker style={{ width: '100%' }} />
+        </Form.Item>
+
+        <Form.Item
+          label="Terms & Conditions"
+          name="terms"
+        >
+          <TextArea rows={6} />
+        </Form.Item>
+
+        <Form.Item
+          label="Order Index"
+          name="order_index"
+        >
+          <InputNumber min={0} />
+        </Form.Item>
+
+        <Form.Item
+          label="Active"
+          name="is_active"
+          valuePropName="checked"
+        >
+          <Switch />
+        </Form.Item>
+      </Form>
+    </Edit>
+  );
+}
