@@ -20,6 +20,13 @@ async function getAboutData() {
     .eq("slug", "about")
     .single();
 
+  // Get values
+  const { data: values } = await supabaseClient
+    .from("values")
+    .select("*")
+    .eq("is_active", true)
+    .order("order_index");
+
   // Get settings
   const { data: settingsData } = await supabaseClient
     .from("settings")
@@ -34,7 +41,7 @@ async function getAboutData() {
     }
   });
 
-  return { pages: pages || [], aboutPage, settings };
+  return { pages: pages || [], aboutPage, values: values || [], settings };
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -53,7 +60,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function AboutPage() {
-  const { pages, aboutPage, settings } = await getAboutData();
+  const { pages, aboutPage, values, settings } = await getAboutData();
 
   return (
     <>
@@ -67,7 +74,7 @@ export default async function AboutPage() {
       {/* Hero Section */}
       <div style={{
         background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
-        padding: '100px 24px',
+        padding: '60px 24px',
         position: 'relative',
         overflow: 'hidden'
       }}>
@@ -81,16 +88,6 @@ export default async function AboutPage() {
           background: 'rgba(251, 206, 7, 0.1)',
           filter: 'blur(40px)'
         }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '-100px',
-          width: '300px',
-          height: '300px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.15)',
-          filter: 'blur(60px)'
-        }} />
         
         <div style={{
           maxWidth: '1400px',
@@ -102,14 +99,14 @@ export default async function AboutPage() {
           <div style={{
             display: 'inline-block',
             background: 'rgba(251, 206, 7, 0.2)',
-            padding: '8px 24px',
+            padding: '6px 20px',
             borderRadius: '50px',
-            marginBottom: '24px',
+            marginBottom: '16px',
             border: '2px solid rgba(251, 206, 7, 0.3)'
           }}>
             <span style={{
               color: '#FBCE07',
-              fontSize: '14px',
+              fontSize: '12px',
               fontWeight: 'bold',
               letterSpacing: '2px',
               textTransform: 'uppercase'
@@ -119,10 +116,10 @@ export default async function AboutPage() {
           </div>
           
           <h1 style={{
-            fontSize: '56px',
+            fontSize: 'clamp(32px, 5vw, 56px)',
             fontWeight: 'bold',
             color: 'white',
-            marginBottom: '24px',
+            marginBottom: '16px',
             textShadow: '0 4px 12px rgba(0,0,0,0.3)',
             lineHeight: '1.2'
           }}>
@@ -133,16 +130,17 @@ export default async function AboutPage() {
             width: '80px',
             height: '4px',
             background: '#FBCE07',
-            margin: '0 auto 32px',
+            margin: '0 auto 24px',
             borderRadius: '2px'
           }} />
           
           <p style={{
-            fontSize: '20px',
+            fontSize: 'clamp(16px, 3vw, 20px)',
             color: 'rgba(255, 255, 255, 0.9)',
             maxWidth: '700px',
             margin: '0 auto',
-            lineHeight: '1.6'
+            lineHeight: '1.6',
+            padding: '0 16px'
           }}>
             {aboutPage?.hero_subtitle || 'Serving the community since 2010'}
           </p>
@@ -152,16 +150,16 @@ export default async function AboutPage() {
       {/* Main Content */}
       <section style={{
         maxWidth: '1200px',
-        margin: '80px auto',
+        margin: '60px auto',
         padding: '0 24px'
       }}>
         {/* Story Section */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
-          gap: '64px',
+          gridTemplateColumns: aboutPage?.hero_image ? 'repeat(auto-fit, minmax(300px, 1fr))' : '1fr',
+          gap: 'clamp(32px, 5vw, 64px)',
           alignItems: 'center',
-          marginBottom: '80px'
+          marginBottom: '60px'
         }}>
           {aboutPage?.hero_image && (
             <div style={{
@@ -178,7 +176,7 @@ export default async function AboutPage() {
           )}
           <div>
             <h2 style={{
-              fontSize: '36px',
+              fontSize: 'clamp(28px, 4vw, 36px)',
               fontWeight: 'bold',
               color: '#DD1D21',
               marginBottom: '24px'
@@ -186,7 +184,7 @@ export default async function AboutPage() {
               Our Journey
             </h2>
             <div style={{
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 2vw, 18px)',
               color: '#666',
               lineHeight: '1.8',
               whiteSpace: 'pre-wrap'
@@ -196,101 +194,71 @@ export default async function AboutPage() {
           </div>
         </div>
 
-        {/* Values Section */}
-        <div style={{
-          background: '#f5f5f5',
-          borderRadius: '12px',
-          padding: '64px 48px',
-          marginBottom: '80px'
-        }}>
-          <h2 style={{
-            fontSize: '36px',
-            fontWeight: 'bold',
-            color: '#DD1D21',
-            marginBottom: '48px',
-            textAlign: 'center'
-          }}>
-            Why Choose Us
-          </h2>
+        {/* Values Section - Now Dynamic */}
+        {values.length > 0 && (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '32px'
+            background: '#f5f5f5',
+            borderRadius: '12px',
+            padding: 'clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)',
+            marginBottom: '60px'
           }}>
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                background: '#DD1D21',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                fontSize: '36px'
-              }}>
-                ⭐
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '12px' }}>
-                Quality First
-              </h3>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
-                Premium Shell fuel and products you can trust
-              </p>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                background: '#DD1D21',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                fontSize: '36px'
-              }}>
-                🤝
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '12px' }}>
-                Customer Care
-              </h3>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
-                Friendly service and support every time
-              </p>
-            </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <div style={{
-                width: '80px',
-                height: '80px',
-                background: '#DD1D21',
-                borderRadius: '50%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto 24px',
-                fontSize: '36px'
-              }}>
-                🏆
-              </div>
-              <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '12px' }}>
-                Local Expertise
-              </h3>
-              <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
-                Serving our community with pride since 2010
-              </p>
+            <h2 style={{
+              fontSize: 'clamp(28px, 4vw, 36px)',
+              fontWeight: 'bold',
+              color: '#DD1D21',
+              marginBottom: '48px',
+              textAlign: 'center'
+            }}>
+              Why Choose Us
+            </h2>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '32px'
+            }}>
+              {values.map((value) => (
+                <div key={value.id} style={{ textAlign: 'center' }}>
+                  <div style={{
+                    width: '80px',
+                    height: '80px',
+                    background: '#DD1D21',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 24px',
+                    fontSize: '36px'
+                  }}>
+                    {value.icon}
+                  </div>
+                  <h3 style={{ 
+                    fontSize: 'clamp(20px, 3vw, 24px)', 
+                    fontWeight: 'bold', 
+                    color: '#1a1a1a', 
+                    marginBottom: '12px' 
+                  }}>
+                    {value.title}
+                  </h3>
+                  <p style={{ 
+                    fontSize: 'clamp(14px, 2vw, 16px)', 
+                    color: '#666', 
+                    lineHeight: '1.6',
+                    padding: '0 8px'
+                  }}>
+                    {value.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
 
         {/* CTA Section */}
         {aboutPage?.cta_text && (
           <div style={{
             background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
             borderRadius: '12px',
-            padding: '64px 48px',
+            padding: 'clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)',
             textAlign: 'center',
             position: 'relative',
             overflow: 'hidden'
@@ -306,21 +274,22 @@ export default async function AboutPage() {
               filter: 'blur(40px)'
             }} />
             <h2 style={{
-              fontSize: '32px',
+              fontSize: 'clamp(24px, 4vw, 32px)',
               fontWeight: 'bold',
               color: 'white',
-              marginBottom: '24px',
+              marginBottom: '16px',
               position: 'relative',
               zIndex: 1
             }}>
               Visit Us Today
             </h2>
             <p style={{
-              fontSize: '18px',
+              fontSize: 'clamp(16px, 2vw, 18px)',
               color: 'rgba(255, 255, 255, 0.9)',
-              marginBottom: '32px',
+              marginBottom: '24px',
               position: 'relative',
-              zIndex: 1
+              zIndex: 1,
+              padding: '0 16px'
             }}>
               Experience the difference of quality service and premium fuel
             </p>

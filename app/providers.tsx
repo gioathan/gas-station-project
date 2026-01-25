@@ -48,6 +48,15 @@ export default function Providers({ children }: { children: React.ReactNode }) {
                     canDelete: true,
                   },
                 },
+                {
+                  name: "values",
+                  list: "/admin/values",
+                  create: "/admin/values/create",
+                  edit: "/admin/values/edit/:id",
+                  meta: {
+                    canDelete: true
+                  },
+                },
                 ]}
             options={{
               syncWithLocation: true,

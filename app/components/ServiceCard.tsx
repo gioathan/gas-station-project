@@ -17,7 +17,7 @@ interface ServiceCardProps {
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
     <>
-      <style jsx>{`
+      <style global jsx>{`
         .service-card {
           background: white;
           border: 1px solid #e0e0e0;

@@ -11,7 +11,8 @@ import {
   AppstoreOutlined,
   PictureOutlined,
   SettingOutlined,
-  GiftOutlined
+  GiftOutlined,
+  HeartOutlined
 } from "@ant-design/icons";
 
 export default function AdminLayout({
@@ -77,6 +78,7 @@ export default function AdminLayout({
     { href: "/admin/services", label: "Services", icon: <AppstoreOutlined /> },
     { href: "/admin/promotions", label: "Promotions", icon: <GiftOutlined /> },
     { href: "/admin/settings", label: "Settings", icon: <SettingOutlined /> },
+    { href: "/admin/values", label:"Values", icon: <HeartOutlined />}
   ];
 
   const isActive = (href: string) => {

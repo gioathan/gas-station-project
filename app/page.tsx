@@ -129,7 +129,7 @@ export default async function HomePage() {
 
       {/* Services Preview */}
       {services && services.length > 0 && (
-        <ServicesSection services={services} />
+        <ServicesSection services={services.slice(0, 3)} />
       )}
 
       {/* Featured Promotions */}
@@ -154,7 +154,7 @@ export default async function HomePage() {
               gap: '32px',
               marginBottom: '48px'
             }}>
-              {promotions.map((promotion) => (
+              {promotions.slice(0, 3).map((promotion) => (
                 <PromotionCard key={promotion.id} promotion={promotion} />
               ))}
             </div>
