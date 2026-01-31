@@ -6,68 +6,53 @@ import routerProvider from "@refinedev/nextjs-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { App as AntdApp, ConfigProvider } from "antd";
 import { supabaseClient } from "@/lib/supabase";
-import { useEffect, useState } from "react";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <RefineKbarProvider>
-      <ConfigProvider>
-        <AntdApp>
+      <AntdApp>
+        <ConfigProvider
+          theme={{
+            token: {
+              colorPrimary: "#DD1D21",
+              borderRadius: 8,
+            },
+          }}
+        >
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
             resources={[
-                {
-                    name: "pages",
-                    list: "/admin/pages",
-                    create: "/admin/pages/create",
-                    edit: "/admin/pages/edit/:id",
-                },
-                {
-                    name: "services",
-                    list: "/admin/services",
-                    create: "/admin/services/create",
-                    edit: "/admin/services/edit/:id",
-                },
-                {
-                    name: "hero_slides",
-                    list: "/admin/hero-slides",
-                    create: "/admin/hero-slides/create",
-                    edit: "/admin/hero-slides/edit/:id",
-                    meta: {
-                    canDelete: true,
-                    },
-                },
-                {
-                  name: "promotions",
-                  list: "/admin/promotions",
-                  create: "/admin/promotions/create",
-                  edit: "/admin/promotions/edit/:id",
-                  meta: {
-                    canDelete: true,
-                  },
-                },
-                {
-                  name: "values",
-                  list: "/admin/values",
-                  create: "/admin/values/create",
-                  edit: "/admin/values/edit/:id",
-                  meta: {
-                    canDelete: true
-                  },
-                },
-                ]}
+              {
+                name: "pages",
+              },
+              {
+                name: "services",
+              },
+              {
+                name: "promotions",
+              },
+              {
+                name: "hero_slides",
+              },
+              {
+                name: "values",
+              },
+              {
+                name: "settings",
+              },
+            ]}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
             }}
           >
-            {children}
             <RefineKbar />
+            {children}
           </Refine>
-        </AntdApp>
-      </ConfigProvider>
+        </ConfigProvider>
+      </AntdApp>
     </RefineKbarProvider>
   );
 }
