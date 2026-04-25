@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
@@ -48,7 +49,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
               warnWhenUnsavedChanges: true,
             }}
           >
-            <RefineKbar />
+            <Suspense fallback={null}>
+              <RefineKbar />
+            </Suspense>
             {children}
           </Refine>
         </ConfigProvider>
