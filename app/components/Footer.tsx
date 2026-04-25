@@ -53,7 +53,7 @@ export default function Footer({ settings }: FooterProps) {
         textAlign: "center",
         color: "#888"
       }}>
-        © {new Date().getFullYear()} Gas Station. All rights reserved.
+        © {new Date().getFullYear()} X Petroleum. All rights reserved.
       </div>
     </footer>
   );

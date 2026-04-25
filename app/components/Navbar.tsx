@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -110,13 +111,15 @@ export default function Navbar({ pages }: NavbarProps) {
             }}></div>
         </div>
 
-          <Link href="/" style={{
-            fontSize: "24px",
-            fontWeight: "bold",
-            color: "#FBCE07",
-            textDecoration: "none"
-          }}>
-            Gas Station
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <Image
+              src="/logo.png"
+              alt="X Petroleum"
+              width={160}
+              height={60}
+              style={{ mixBlendMode: "multiply", objectFit: "contain" }}
+              priority
+            />
           </Link>
           
           {/* Desktop Navigation */}

@@ -5,32 +5,20 @@ import ContactButton from "../components/ContactButton";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
+export const revalidate = 3600;
+
 async function getAboutData() {
-  // Get pages for nav
-  const { data: pages } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("show_in_menu", true)
-    .order("menu_order");
-
-  // Get about page
-  const { data: aboutPage } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("slug", "about")
-    .single();
-
-  // Get values
-  const { data: values } = await supabaseClient
-    .from("values")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_index");
-
-  // Get settings
-  const { data: settingsData } = await supabaseClient
-    .from("settings")
-    .select("*");
+  const [
+    { data: pages },
+    { data: aboutPage },
+    { data: values },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabaseClient.from("pages").select("*").eq("show_in_menu", true).order("menu_order"),
+    supabaseClient.from("pages").select("*").eq("slug", "about").single(),
+    supabaseClient.from("values").select("*").eq("is_active", true).order("order_index"),
+    supabaseClient.from("settings").select("*"),
+  ]);
 
   const settings: any = {};
   settingsData?.forEach((setting: any) => {
@@ -48,7 +36,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { aboutPage } = await getAboutData();
   
   return {
-    title: aboutPage?.meta_title || 'About Us - Shell Gas Station',
+    title: aboutPage?.meta_title || 'About Us - X Petroleum',
     description: aboutPage?.meta_description || 'Our story and values',
     keywords: aboutPage?.meta_keywords,
     openGraph: {
@@ -189,7 +177,7 @@ export default async function AboutPage() {
               lineHeight: '1.8',
               whiteSpace: 'pre-wrap'
             }}>
-              {aboutPage?.content || 'We are a family-owned Shell gas station committed to providing exceptional service to our community. Our experienced team ensures every customer receives the quality and care they deserve.'}
+              {aboutPage?.content || 'We are a family-owned X Petroleum gas station committed to providing exceptional service to our community. Our experienced team ensures every customer receives the quality and care they deserve.'}
             </div>
           </div>
         </div>

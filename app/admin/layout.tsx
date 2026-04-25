@@ -101,7 +101,7 @@ export default function AdminLayout({
           borderBottom: "1px solid #2a2a2a"
         }}>
           <h2 style={{ margin: 0, color: "#ededed", fontWeight: 600 }}>
-            Megistanikos Venzinas
+            X Petroleum
           </h2>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <span style={{ color: "#888" }}>{user?.email}</span>

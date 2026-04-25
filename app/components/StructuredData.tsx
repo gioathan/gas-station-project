@@ -11,7 +11,7 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "GasStation",
-    "name": settings.site_name || "Shell Gas Station",
+    "name": settings.site_name || "X Petroleum",
     "image": settings.logo || "",
     "description": settings.site_description || "Premium fuel and convenience services",
     "@id": baseUrl,
@@ -53,7 +53,7 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
   const organization = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": settings.site_name || "Shell Gas Station",
+    "name": settings.site_name || "X Petroleum",
     "url": baseUrl,
     "logo": settings.logo || "",
     "sameAs": [

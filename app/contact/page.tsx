@@ -2,28 +2,22 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactInfoCard from "../components/ContactInfoCard";
+import ContactForm from "../components/ContactForm";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
+export const revalidate = 3600;
+
 async function getContactData() {
-  // Get pages for nav
-  const { data: pages } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("show_in_menu", true)
-    .order("menu_order");
-
-  // Get contact page
-  const { data: contactPage } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("slug", "contact")
-    .single();
-
-  // Get settings
-  const { data: settingsData } = await supabaseClient
-    .from("settings")
-    .select("*");
+  const [
+    { data: pages },
+    { data: contactPage },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabaseClient.from("pages").select("*").eq("show_in_menu", true).order("menu_order"),
+    supabaseClient.from("pages").select("*").eq("slug", "contact").single(),
+    supabaseClient.from("settings").select("*"),
+  ]);
 
   const settings: any = {};
   settingsData?.forEach((setting: any) => {
@@ -41,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { contactPage } = await getContactData();
   
   return {
-    title: contactPage?.meta_title || 'Contact Us - Shell Gas Station',
+    title: contactPage?.meta_title || 'Contact Us - X Petroleum',
     description: contactPage?.meta_description || 'Get in touch with us',
     keywords: contactPage?.meta_keywords,
     openGraph: {
@@ -206,7 +200,7 @@ export default async function ContactPage() {
           </h3>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmin(250px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
             gap: '24px',
             maxWidth: '800px',
             margin: '0 auto'
@@ -229,6 +223,9 @@ export default async function ContactPage() {
             </div>
           </div>
         </div>
+
+        {/* Contact Form */}
+        <ContactForm />
 
         {/* Google Maps */}
         {settings.google_maps_embed && (

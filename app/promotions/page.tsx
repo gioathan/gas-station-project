@@ -6,32 +6,20 @@ import ContactButtonPromotions from "../components/ContactButtonPromotions";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
+export const revalidate = 3600;
+
 async function getPromotionsData() {
-  // Get pages for nav
-  const { data: pages } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("show_in_menu", true)
-    .order("menu_order");
-
-  // Get promotions page
-  const { data: promotionsPage } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("slug", "promotions")
-    .single();
-
-  // Get active promotions
-  const { data: promotions } = await supabaseClient
-    .from("promotions")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_index");
-
-  // Get settings
-  const { data: settingsData } = await supabaseClient
-    .from("settings")
-    .select("*");
+  const [
+    { data: pages },
+    { data: promotionsPage },
+    { data: promotions },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabaseClient.from("pages").select("*").eq("show_in_menu", true).order("menu_order"),
+    supabaseClient.from("pages").select("*").eq("slug", "promotions").single(),
+    supabaseClient.from("promotions").select("*").eq("is_active", true).order("order_index"),
+    supabaseClient.from("settings").select("*"),
+  ]);
 
   const settings: any = {};
   settingsData?.forEach((setting: any) => {
@@ -49,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { promotionsPage } = await getPromotionsData();
   
   return {
-    title: promotionsPage?.meta_title || 'Current Promotions - Shell Gas Station',
+    title: promotionsPage?.meta_title || 'Current Promotions - X Petroleum',
     description: promotionsPage?.meta_description || 'Check out our latest deals',
     keywords: promotionsPage?.meta_keywords,
     openGraph: {
@@ -191,7 +179,7 @@ export default async function PromotionsPage() {
         )}
       </section>
 
-      {/* Shell Rewards Section */}
+      {/* Rewards Section */}
       <section style={{
         background: '#f5f5f5',
         padding: '80px 24px',
@@ -221,7 +209,7 @@ export default async function PromotionsPage() {
             color: '#DD1D21',
             marginBottom: '16px'
           }}>
-            Join Shell Rewards
+            Join X Petroleum Rewards
           </h2>
           <p style={{
             fontSize: '20px',

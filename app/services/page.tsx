@@ -6,32 +6,20 @@ import CTAButton from "../components/CTAButton";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
+export const revalidate = 3600;
+
 async function getServicesData() {
-  // Get pages for nav
-  const { data: pages } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("show_in_menu", true)
-    .order("menu_order");
-
-  // Get services page
-  const { data: servicesPage } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("slug", "services")
-    .single();
-
-  // Get all services
-  const { data: services } = await supabaseClient
-    .from("services")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_index");
-
-  // Get settings
-  const { data: settingsData } = await supabaseClient
-    .from("settings")
-    .select("*");
+  const [
+    { data: pages },
+    { data: servicesPage },
+    { data: services },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabaseClient.from("pages").select("*").eq("show_in_menu", true).order("menu_order"),
+    supabaseClient.from("pages").select("*").eq("slug", "services").single(),
+    supabaseClient.from("services").select("*").eq("is_active", true).order("order_index"),
+    supabaseClient.from("settings").select("*"),
+  ]);
 
   const settings: any = {};
   settingsData?.forEach((setting: any) => {
@@ -49,15 +37,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const { servicesPage, settings } = await getServicesData();
   
   return {
-    title: servicesPage?.meta_title || 'Our Services - Shell Gas Station',
+    title: servicesPage?.meta_title || 'Our Services - X Petroleum',
     description: servicesPage?.meta_description || 'Premium fuel, car wash, and convenience store services',
-    keywords: servicesPage?.meta_keywords || 'gas station, shell, fuel, car wash',
+    keywords: servicesPage?.meta_keywords || 'gas station, X Petroleum, fuel, car wash',
     openGraph: {
       title: servicesPage?.og_title || servicesPage?.meta_title || 'Our Services',
       description: servicesPage?.og_description || servicesPage?.meta_description || 'Premium services',
       images: servicesPage?.og_image ? [servicesPage.og_image] : [],
       type: 'website',
-      siteName: settings.site_name || 'Shell Gas Station',
+      siteName: settings.site_name || 'X Petroleum',
     },
     twitter: {
       card: 'summary_large_image',

@@ -10,22 +10,23 @@ import CTAButtonYellow from "./components/CTAButtonYellow";
 import { Metadata } from "next";
 import StructuredData from "./components/StructuredData";
 
+export const revalidate = 3600;
+
 async function getHomeData() {
-  // Get pages for nav
-  const { data: pages } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("show_in_menu", true)
-    .order("menu_order");
+  const [
+    { data: pages },
+    { data: homePage },
+    { data: services },
+    { data: promotions },
+    { data: settingsData },
+  ] = await Promise.all([
+    supabaseClient.from("pages").select("*").eq("show_in_menu", true).order("menu_order"),
+    supabaseClient.from("pages").select("*").eq("slug", "/").single(),
+    supabaseClient.from("services").select("*").eq("is_active", true).order("order_index").limit(6),
+    supabaseClient.from("promotions").select("*").eq("is_active", true).order("order_index").limit(3),
+    supabaseClient.from("settings").select("*"),
+  ]);
 
-  // Get homepage
-  const { data: homePage } = await supabaseClient
-    .from("pages")
-    .select("*")
-    .eq("slug", "/")
-    .single();
-
-  // Get hero slides for homepage (only if homepage exists)
   let heroSlides = null;
   if (homePage?.id) {
     const { data } = await supabaseClient
@@ -36,27 +37,6 @@ async function getHomeData() {
       .order("order_index");
     heroSlides = data;
   }
-
-  // Get services
-  const { data: services } = await supabaseClient
-    .from("services")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_index")
-    .limit(6);
-
-  // Get featured promotions (top 3)
-  const { data: promotions } = await supabaseClient
-    .from("promotions")
-    .select("*")
-    .eq("is_active", true)
-    .order("order_index")
-    .limit(3);
-
-  // Get settings
-  const { data: settingsData } = await supabaseClient
-    .from("settings")
-    .select("*");
 
   const settings: any = {};
   settingsData?.forEach((setting: any) => {
@@ -74,7 +54,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { homePage, settings } = await getHomeData();
   
   return {
-    title: homePage?.meta_title || 'Welcome - Shell Gas Station',
+    title: homePage?.meta_title || 'Welcome - X Petroleum',
     description: homePage?.meta_description || 'Premium fuel and services',
     keywords: homePage?.meta_keywords,
     openGraph: {
@@ -121,7 +101,7 @@ export default async function HomePage() {
       ) : (
         <div style={{ height: '600px', background: '#DD1D21', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
           <div>
-            <h1 style={{ fontSize: '48px' }}>Welcome to Our Gas Station</h1>
+            <h1 style={{ fontSize: '48px' }}>Welcome to X Petroleum</h1>
             <p style={{ fontSize: '24px' }}>Quality fuel and service</p>
           </div>
         </div>
