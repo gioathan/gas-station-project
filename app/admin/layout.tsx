@@ -4,6 +4,7 @@ import { supabaseClient } from "@/lib/supabase";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "antd";
+import Providers from "../providers";
 import { 
   LogoutOutlined, 
   DashboardOutlined, 
@@ -89,6 +90,7 @@ export default function AdminLayout({
   };
 
   return (
+    <Providers>
     <div data-admin="true" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#0a0a0a" }}>
       <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", background: "#0a0a0a" }}>
         <header style={{ 
@@ -173,5 +175,6 @@ export default function AdminLayout({
         </div>
       </div>
     </div>
+    </Providers>
   );
 }
