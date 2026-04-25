@@ -2,7 +2,7 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PromotionCard from "../components/PromotionsCard";
-import ContactButtonPromotions from "../components/ContactButtonPromotions";
+import Link from "next/link";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
@@ -35,10 +35,9 @@ async function getPromotionsData() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { promotionsPage } = await getPromotionsData();
-  
   return {
-    title: promotionsPage?.meta_title || 'Current Promotions - X Petroleum',
-    description: promotionsPage?.meta_description || 'Check out our latest deals',
+    title: promotionsPage?.meta_title || "Current Promotions - X Petroleum",
+    description: promotionsPage?.meta_description || "Check out our latest deals",
     keywords: promotionsPage?.meta_keywords,
     openGraph: {
       title: promotionsPage?.og_title || promotionsPage?.meta_title,
@@ -53,109 +52,52 @@ export default async function PromotionsPage() {
 
   return (
     <>
-      <StructuredData 
-        type="promotions" 
-        settings={settings} 
-        pageData={{ promotions }} 
-      />
+      <StructuredData type="promotions" settings={settings} pageData={{ promotions }} />
       <Navbar pages={pages} />
-      
-      {/* Hero Section */}
-      <div style={{
-        background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
-        padding: '100px 24px',
-        position: 'relative',
-        overflow: 'hidden'
+
+      {/* ── Page Header ── */}
+      <section style={{
+        height: "260px",
+        background: "#2a2a2a",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
       }}>
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '-50px',
-          width: '200px',
-          height: '200px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.1)',
-          filter: 'blur(40px)'
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '-100px',
-          width: '300px',
-          height: '300px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.15)',
-          filter: 'blur(60px)'
-        }} />
-        
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(251, 206, 7, 0.2)',
-            padding: '8px 24px',
-            borderRadius: '50px',
-            marginBottom: '24px',
-            border: '2px solid rgba(251, 206, 7, 0.3)'
-          }}>
-            <span style={{
-              color: '#FBCE07',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              letterSpacing: '2px',
-              textTransform: 'uppercase'
-            }}>
-              Limited Time Offers
-            </span>
-          </div>
-          
+        <div style={{ padding: "0 24px", maxWidth: "800px" }}>
           <h1 style={{
-            fontSize: '56px',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '24px',
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            lineHeight: '1.2'
+            fontSize: "48px",
+            fontWeight: 700,
+            color: "#ffffff",
+            fontFamily: "'Work Sans', sans-serif",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            marginBottom: "16px",
           }}>
-            {promotionsPage?.hero_title || 'Current Promotions'}
+            {promotionsPage?.hero_title || "Τρέχουσες Προσφορές"}
           </h1>
-          
-          <div style={{
-            width: '80px',
-            height: '4px',
-            background: '#FBCE07',
-            margin: '0 auto 32px',
-            borderRadius: '2px'
-          }} />
-          
           <p style={{
-            fontSize: '20px',
-            color: 'rgba(255, 255, 255, 0.9)',
-            maxWidth: '700px',
-            margin: '0 auto',
-            lineHeight: '1.6'
+            fontSize: "18px",
+            color: "rgba(255,255,255,0.7)",
+            lineHeight: 1.6,
+            fontFamily: "'Inter', sans-serif",
           }}>
-            {promotionsPage?.hero_subtitle || 'Save more with our special offers'}
+            {promotionsPage?.hero_subtitle || "Εξοικονόμησε με τις ειδικές μας προσφορές. Σχεδιασμένες για τον σύγχρονο ταξιδιώτη."}
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Promotions Grid */}
+      {/* ── Promotions Grid ── */}
       <section style={{
-        maxWidth: '1400px',
-        margin: '80px auto',
-        padding: '0 24px'
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "80px 24px",
       }}>
         {promotions && promotions.length > 0 ? (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-            gap: '32px'
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+            gap: "24px",
           }}>
             {promotions.map((promotion) => (
               <PromotionCard key={promotion.id} promotion={promotion} />
@@ -163,67 +105,100 @@ export default async function PromotionsPage() {
           </div>
         ) : (
           <div style={{
-            textAlign: 'center',
-            padding: '80px 24px',
-            background: '#f5f5f5',
-            borderRadius: '12px'
+            textAlign: "center",
+            padding: "80px 24px",
+            background: "#f3f3f3",
+            borderRadius: "12px",
           }}>
-            <div style={{ fontSize: '64px', marginBottom: '24px' }}>🎉</div>
-            <h2 style={{ fontSize: '28px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '16px' }}>
-              No Active Promotions
+            <span className="material-symbols-outlined" style={{ fontSize: "64px", color: "#e2e2e2", display: "block", marginBottom: "24px" }}>
+              celebration
+            </span>
+            <h2 style={{
+              fontSize: "28px",
+              fontWeight: 700,
+              color: "#1a1c1c",
+              fontFamily: "'Work Sans', sans-serif",
+              marginBottom: "12px",
+            }}>
+              Δεν υπάρχουν Ενεργές Προσφορές
             </h2>
-            <p style={{ fontSize: '18px', color: '#666' }}>
-              Check back soon for exciting offers and deals!
+            <p style={{ fontSize: "17px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>
+              Επισκέψου μας σύντομα για νέες προσφορές!
             </p>
           </div>
         )}
       </section>
 
-      {/* Rewards Section */}
-      <section style={{
-        background: '#f5f5f5',
-        padding: '80px 24px',
-        marginTop: '80px'
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          textAlign: 'center'
-        }}>
+      {/* ── Loyalty Program ── */}
+      <section style={{ background: "#f3f3f3", padding: "80px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{
-            width: '80px',
-            height: '80px',
-            background: '#DD1D21',
-            borderRadius: '50%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            margin: '0 auto 24px',
-            fontSize: '36px'
+            background: "#ffffff",
+            border: "1px solid #e2e2e2",
+            borderRadius: "12px",
+            padding: "48px",
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: "40px",
           }}>
-            🎁
+            {/* Icon */}
+            <div style={{
+              width: "88px",
+              height: "88px",
+              background: "#fcd400",
+              borderRadius: "50%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}>
+              <span className="material-symbols-outlined" style={{ fontSize: "44px", color: "#5a4a00" }}>loyalty</span>
+            </div>
+
+            {/* Text */}
+            <div style={{ flex: 1, minWidth: "240px" }}>
+              <h2 style={{
+                fontSize: "28px",
+                fontWeight: 700,
+                color: "#1a1c1c",
+                fontFamily: "'Work Sans', sans-serif",
+                letterSpacing: "-0.01em",
+                marginBottom: "10px",
+              }}>
+                Μάθε Περισσότερα για Εμάς
+              </h2>
+              <p style={{
+                fontSize: "16px",
+                color: "#5b5b5a",
+                lineHeight: 1.6,
+                fontFamily: "'Inter', sans-serif",
+              }}>
+                Ανακάλυψε την ιστορία μας, τις αξίες μας και γιατί οι πελάτες μας μας εμπιστεύονται χρόνια.
+              </p>
+            </div>
+
+            {/* CTA */}
+            <Link
+              href="/about"
+              style={{
+                background: "linear-gradient(135deg, #e31b23 0%, #a01518 100%)",
+                color: "#ffffff",
+                padding: "14px 36px",
+                borderRadius: "6px",
+                fontWeight: 700,
+                fontSize: "13px",
+                textDecoration: "none",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                fontFamily: "'Inter', sans-serif",
+                flexShrink: 0,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Σχετικά με εμάς
+            </Link>
           </div>
-          <h2 style={{
-            fontSize: '36px',
-            fontWeight: 'bold',
-            color: '#DD1D21',
-            marginBottom: '16px'
-          }}>
-            Join X Petroleum Rewards
-          </h2>
-          <p style={{
-            fontSize: '20px',
-            color: '#666',
-            marginBottom: '32px',
-            maxWidth: '700px',
-            margin: '0 auto 32px'
-          }}>
-            Earn points on every purchase and unlock exclusive rewards. Sign up today and start saving!
-          </p>
-          
-          <ContactButtonPromotions
-            link="/contact"
-          />
         </div>
       </section>
 

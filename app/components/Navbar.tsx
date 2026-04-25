@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   pages: any[];
@@ -10,177 +11,208 @@ interface NavbarProps {
 
 export default function Navbar({ pages }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const getHref = (slug: string) =>
+    slug === "/" || slug === "" ? "/" : `/${slug}`;
+
+  const greekTitles: Record<string, string> = {
+    "Home": "Αρχική",
+    "Services": "Υπηρεσίες",
+    "Promotions": "Προσφορές",
+    "About": "Σχετικά",
+    "About Us": "Σχετικά",
+    "Contact": "Επικοινωνία",
+  };
 
   return (
     <>
-      <style jsx global>{`
-        .nav-links {
-          display: flex;
-          gap: 32px;
-        }
-        
-        .burger-menu {
-          display: none;
-          flex-direction: column;
-          gap: 5px;
-          cursor: pointer;
-          z-index: 1001;
-        }
-        
-        .burger-line {
-          width: 25px;
-          height: 3px;
-          background: #FBCE07;
-          transition: all 0.3s;
-        }
-        
-        .mobile-menu {
-          display: none;
-        }
-        
-        .mobile-overlay {
-          display: none;
-        }
-        
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-          }
-          
-          .burger-menu {
-            display: flex;
-          }
-          
-          .mobile-menu {
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 80%;
-            max-width: 300px;
-            height: 100vh;
-            background: #DD1D21;
-            padding: 80px 24px 24px;
-            transition: transform 0.3s ease;
-            z-index: 1000;
-          }
-          
-          .mobile-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-          }
-        }
-      `}</style>
-
-      <nav style={{
-        background: "#DD1D21",
-        padding: "16px 0",
-        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-        position: "relative",
-        zIndex: 1002
+      <header style={{
+        background: "#111111",
+        borderBottom: "1px solid #252525",
+        boxShadow: "0 4px 6px -1px rgba(0,0,0,0.4)",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
       }}>
         <div style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "0 24px",
+          padding: "0 32px",
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center"
+          alignItems: "center",
+          height: "80px",
         }}>
-          {/* Burger Menu Icon */}
-        <div 
-            className="burger-menu"
-            onClick={() => setMenuOpen(!menuOpen)}
-            style={{
-                marginRight: '8px'
-            }}
-            >
-            <div className="burger-line" style={{
-                transform: menuOpen ? 'rotate(45deg) translateY(8px)' : 'none'
-            }}></div>
-            <div className="burger-line" style={{
-                opacity: menuOpen ? 0 : 1
-            }}></div>
-            <div className="burger-line" style={{
-                transform: menuOpen ? 'rotate(-45deg) translateY(-8px)' : 'none'
-            }}></div>
-        </div>
-
-          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          {/* Logo */}
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0 }}>
             <Image
               src="/logo.png"
               alt="X Petroleum"
-              width={160}
-              height={60}
-              style={{ mixBlendMode: "multiply", objectFit: "contain" }}
+              width={150}
+              height={56}
+              style={{ objectFit: "contain" }}
               priority
             />
           </Link>
-          
-          {/* Desktop Navigation */}
-          <div className="nav-links">
-            {pages.map((page) => (
+
+          {/* Desktop Nav */}
+          <nav className="nav-desktop" style={{ alignItems: "center", gap: "32px" }}>
+            {pages.filter(p => p.slug !== "contact").map((page) => {
+              const href = getHref(page.slug);
+              const isActive = pathname === href;
+              return (
+                <Link
+                  key={page.slug}
+                  href={href}
+                  className={isActive ? "nav-link nav-link-active" : "nav-link"}
+                >
+                  {greekTitles[page.title] ?? page.title}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Desktop CTA */}
+          <div className="nav-desktop" style={{ alignItems: "center" }}>
+            <Link
+              href="/contact"
+              style={{
+                background: pathname === "/contact" ? "#fcd400" : "#e31b23",
+                color: pathname === "/contact" ? "#5a4a00" : "#ffffff",
+                padding: "8px 20px",
+                borderRadius: "6px",
+                fontWeight: 600,
+                fontSize: "13px",
+                textDecoration: "none",
+                letterSpacing: "0.04em",
+                fontFamily: "'Work Sans', sans-serif",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Επικοινωνία
+            </Link>
+          </div>
+
+          {/* Burger Button */}
+          <button
+            className="nav-mobile-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+              flexDirection: "column",
+              gap: "5px",
+              overflow: "visible",
+            }}
+          >
+            <span style={{
+              display: "block", width: "24px", height: "2px",
+              background: "#fcd400", transition: "all 0.3s",
+              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
+            }} />
+            <span style={{
+              display: "block", width: "24px", height: "2px",
+              background: "#fcd400", transition: "all 0.3s",
+              opacity: menuOpen ? 0 : 1,
+            }} />
+            <span style={{
+              display: "block", width: "24px", height: "2px",
+              background: "#fcd400", transition: "all 0.3s",
+              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+            }} />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Overlay */}
+      {menuOpen && (
+        <div
+          onClick={() => setMenuOpen(false)}
+          style={{
+            position: "fixed", inset: 0,
+            background: "rgba(0,0,0,0.6)",
+            zIndex: 40,
+          }}
+        />
+      )}
+
+      {/* Mobile Slide-in Menu */}
+      <div style={{
+        position: "fixed",
+        top: 0, left: 0,
+        width: "280px",
+        height: "100vh",
+        background: "#111111",
+        borderRight: "1px solid #252525",
+        padding: "24px 20px",
+        transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
+        transition: "transform 0.3s ease",
+        zIndex: 45,
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "auto",
+      }}>
+        {/* Logo in mobile menu */}
+        <div style={{ marginBottom: "32px", paddingTop: "8px" }}>
+          <Image src="/logo.png" alt="X Petroleum" width={120} height={45} style={{ objectFit: "contain" }} />
+        </div>
+
+        {/* Nav Links */}
+        <nav style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
+          {pages.filter(p => p.slug !== "contact").map((page) => {
+            const href = getHref(page.slug);
+            const isActive = pathname === href;
+            return (
               <Link
                 key={page.slug}
-                href={`/${page.slug}`}
+                href={href}
+                onClick={() => setMenuOpen(false)}
                 style={{
-                  color: "white",
+                  color: isActive ? "#fcd400" : "#d1d5db",
                   textDecoration: "none",
-                  fontWeight: 500,
-                  transition: "color 0.2s"
+                  fontWeight: isActive ? 600 : 400,
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  display: "block",
+                  background: isActive ? "rgba(252,212,0,0.08)" : "transparent",
+                  fontFamily: "'Work Sans', sans-serif",
+                  fontSize: "15px",
+                  borderLeft: isActive ? "3px solid #fcd400" : "3px solid transparent",
+                  transition: "all 0.2s",
                 }}
-                onMouseOver={(e) => e.currentTarget.style.color = "#FBCE07"}
-                onMouseOut={(e) => e.currentTarget.style.color = "white"}
               >
                 {page.title}
               </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
+            );
+          })}
+        </nav>
 
-      {/* Mobile Overlay */}
-      <div 
-        className="mobile-overlay"
-        onClick={() => setMenuOpen(false)}
-        style={{
-          display: menuOpen ? 'block' : 'none'
-        }}
-      />
-
-      {/* Mobile Menu */}
-      <div 
-        className="mobile-menu"
-        style={{
-          transform: menuOpen ? 'translateX(0)' : 'translateX(-100%)',
-          boxShadow: menuOpen ? '2px 0 8px rgba(0,0,0,0.3)' : 'none'
-        }}
-      >
-        {pages.map((page) => (
+        {/* CTA Button */}
+        <div style={{ marginTop: "32px", paddingBottom: "16px" }}>
           <Link
-            key={page.slug}
-            href={`/${page.slug}`}
+            href="/contact"
             onClick={() => setMenuOpen(false)}
             style={{
-              display: "block",
-              color: "white",
+              background: pathname === "/contact" ? "#fcd400" : "#e31b23",
+              color: pathname === "/contact" ? "#5a4a00" : "#ffffff",
+              padding: "12px 20px",
+              borderRadius: "6px",
+              fontWeight: 600,
+              fontSize: "14px",
               textDecoration: "none",
-              fontWeight: 500,
-              padding: "16px 0",
-              borderBottom: "1px solid rgba(255,255,255,0.1)",
-              transition: "color 0.2s"
+              textAlign: "center",
+              fontFamily: "'Work Sans', sans-serif",
+              letterSpacing: "0.04em",
+              display: "block",
             }}
-            onMouseOver={(e) => e.currentTarget.style.color = "#FBCE07"}
-            onMouseOut={(e) => e.currentTarget.style.color = "white"}
           >
-            {page.title}
+            Επικοινωνία
           </Link>
-        ))}
+        </div>
       </div>
     </>
   );

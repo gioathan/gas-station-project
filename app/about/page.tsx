@@ -59,81 +59,37 @@ export default async function AboutPage() {
       />
       <Navbar pages={pages} />
       
-      {/* Hero Section */}
-      <div style={{
-        background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
-        padding: '60px 24px',
-        position: 'relative',
-        overflow: 'hidden'
+      {/* Page Header */}
+      <section style={{
+        height: '260px',
+        background: '#2a2a2a',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
       }}>
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '-50px',
-          width: '200px',
-          height: '200px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.1)',
-          filter: 'blur(40px)'
-        }} />
-        
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(251, 206, 7, 0.2)',
-            padding: '6px 20px',
-            borderRadius: '50px',
-            marginBottom: '16px',
-            border: '2px solid rgba(251, 206, 7, 0.3)'
-          }}>
-            <span style={{
-              color: '#FBCE07',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              letterSpacing: '2px',
-              textTransform: 'uppercase'
-            }}>
-              Our Story
-            </span>
-          </div>
-          
+        <div style={{ padding: '0 24px', maxWidth: '800px' }}>
           <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 56px)',
-            fontWeight: 'bold',
-            color: 'white',
+            fontSize: '48px',
+            fontWeight: 700,
+            color: '#ffffff',
+            fontFamily: "'Work Sans', sans-serif",
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
             marginBottom: '16px',
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            lineHeight: '1.2'
           }}>
-            {aboutPage?.hero_title || 'About Us'}
+            {aboutPage?.hero_title || 'Σχετικά με εμάς'}
           </h1>
-          
-          <div style={{
-            width: '80px',
-            height: '4px',
-            background: '#FBCE07',
-            margin: '0 auto 24px',
-            borderRadius: '2px'
-          }} />
-          
           <p style={{
-            fontSize: 'clamp(16px, 3vw, 20px)',
-            color: 'rgba(255, 255, 255, 0.9)',
-            maxWidth: '700px',
-            margin: '0 auto',
-            lineHeight: '1.6',
-            padding: '0 16px'
+            fontSize: '18px',
+            color: 'rgba(255,255,255,0.7)',
+            lineHeight: 1.6,
+            fontFamily: "'Inter', sans-serif",
           }}>
-            {aboutPage?.hero_subtitle || 'Serving the community since 2010'}
+            {aboutPage?.hero_subtitle || 'Εξυπηρετούμε την κοινότητα από το 2010'}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Main Content */}
       <section style={{
@@ -165,11 +121,13 @@ export default async function AboutPage() {
           <div>
             <h2 style={{
               fontSize: 'clamp(28px, 4vw, 36px)',
-              fontWeight: 'bold',
-              color: '#DD1D21',
-              marginBottom: '24px'
+              fontWeight: 700,
+              color: '#b90014',
+              marginBottom: '24px',
+              fontFamily: "'Work Sans', sans-serif",
+              letterSpacing: '-0.01em',
             }}>
-              Our Journey
+              Η Πορεία μας
             </h2>
             <div style={{
               fontSize: 'clamp(16px, 2vw, 18px)',
@@ -177,7 +135,7 @@ export default async function AboutPage() {
               lineHeight: '1.8',
               whiteSpace: 'pre-wrap'
             }}>
-              {aboutPage?.content || 'We are a family-owned X Petroleum gas station committed to providing exceptional service to our community. Our experienced team ensures every customer receives the quality and care they deserve.'}
+              {aboutPage?.content || 'Είμαστε ένας οικογενειακός σταθμός X Petroleum με δέσμευση στην ποιοτική εξυπηρέτηση της κοινότητάς μας. Η έμπειρη ομάδα μας διασφαλίζει ότι κάθε πελάτης λαμβάνει την ποιότητα και τη φροντίδα που αξίζει.'}
             </div>
           </div>
         </div>
@@ -192,13 +150,16 @@ export default async function AboutPage() {
           }}>
             <h2 style={{
               fontSize: 'clamp(28px, 4vw, 36px)',
-              fontWeight: 'bold',
-              color: '#DD1D21',
-              marginBottom: '48px',
-              textAlign: 'center'
+              fontWeight: 700,
+              color: '#1a1c1c',
+              marginBottom: '8px',
+              textAlign: 'center',
+              fontFamily: "'Work Sans', sans-serif",
+              letterSpacing: '-0.01em',
             }}>
-              Why Choose Us
+              Γιατί να μας Επιλέξεις
             </h2>
+            <div style={{ width: '48px', height: '3px', background: '#e31b23', margin: '0 auto 40px' }} />
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -244,42 +205,29 @@ export default async function AboutPage() {
         {/* CTA Section */}
         {aboutPage?.cta_text && (
           <div style={{
-            background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
+            background: '#e31b23',
             borderRadius: '12px',
-            padding: 'clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)',
+            padding: 'clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px)',
             textAlign: 'center',
-            position: 'relative',
-            overflow: 'hidden'
           }}>
-            <div style={{
-              position: 'absolute',
-              top: '-50px',
-              right: '-50px',
-              width: '200px',
-              height: '200px',
-              borderRadius: '50%',
-              background: 'rgba(251, 206, 7, 0.1)',
-              filter: 'blur(40px)'
-            }} />
             <h2 style={{
               fontSize: 'clamp(24px, 4vw, 32px)',
-              fontWeight: 'bold',
+              fontWeight: 700,
               color: 'white',
-              marginBottom: '16px',
-              position: 'relative',
-              zIndex: 1
+              marginBottom: '12px',
+              fontFamily: "'Work Sans', sans-serif",
+              letterSpacing: '-0.01em',
             }}>
-              Visit Us Today
+              Επισκέψου μας Σήμερα
             </h2>
             <p style={{
-              fontSize: 'clamp(16px, 2vw, 18px)',
-              color: 'rgba(255, 255, 255, 0.9)',
-              marginBottom: '24px',
-              position: 'relative',
-              zIndex: 1,
-              padding: '0 16px'
+              fontSize: 'clamp(16px, 2vw, 17px)',
+              color: 'rgba(255, 255, 255, 0.88)',
+              marginBottom: '28px',
+              fontFamily: "'Inter', sans-serif",
+              lineHeight: 1.6,
             }}>
-              Experience the difference of quality service and premium fuel
+              Νιώσε τη διαφορά της ποιοτικής εξυπηρέτησης και των premium καυσίμων
             </p>
             <ContactButton
               text={aboutPage.cta_text}

@@ -1,6 +1,7 @@
 "use client";
 
-import Image from 'next/image';
+import Image from "next/image";
+import { useState } from "react";
 
 interface Promotion {
   id: string;
@@ -18,127 +19,184 @@ interface PromotionCardProps {
 }
 
 export default function PromotionCard({ promotion }: PromotionCardProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+
   const formatDate = (dateString: string) => {
+    if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return date.toLocaleDateString("el-GR", { month: "short", day: "numeric", year: "numeric" });
   };
 
   return (
     <>
-      <style jsx global>{`
-        .promotion-card {
-          background: white;
-          border: 2px solid #e0e0e0;
-          border-radius: 12px;
-          overflow: hidden;
-          transition: transform 0.3s, box-shadow 0.3s;
-          cursor: pointer;
-        }
-        
-        .promotion-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        }
-        
-        .discount-badge {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-          background: #DD1D21;
-          color: #FBCE07;
-          padding: 12px 24px;
-          border-radius: 50px;
-          font-size: 20px;
-          font-weight: bold;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-          border: 3px solid #FBCE07;
-          z-index: 1;
-        }
-      `}</style>
-      
-      <div className="promotion-card">
-        {promotion.image && (
-          <div style={{ position: 'relative', width: '100%', height: '250px' }}>
+      <article
+        style={{
+          background: "#ffffff",
+          border: "1px solid #e2e2e2",
+          borderRadius: "8px",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          transition: "box-shadow 0.25s",
+        }}
+        onMouseOver={(e) => { e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.07)"; }}
+        onMouseOut={(e) => { e.currentTarget.style.boxShadow = "none"; }}
+      >
+        {/* Image */}
+        <div style={{ position: "relative", height: "192px", overflow: "hidden", flexShrink: 0 }}>
+          {promotion.image ? (
             <Image
               src={promotion.image}
               alt={promotion.title}
-              width={400}
-              height={250}
+              fill
               sizes="(max-width: 768px) 100vw, 400px"
+              style={{ objectFit: "cover" }}
               quality={80}
-              style={{
-                width: '100%',
-                height: '250px',
-                objectFit: 'cover'
-              }}
             />
-            {promotion.discount_text && (
-              <div className="discount-badge">
-                {promotion.discount_text}
-              </div>
-            )}
-          </div>
-        )}
-        
-        <div style={{ padding: '32px' }}>
+          ) : (
+            <div style={{ width: "100%", height: "100%", background: "linear-gradient(135deg, #1a1a1a 0%, #b90014 100%)" }} />
+          )}
+          {promotion.discount_text && (
+            <div style={{
+              position: "absolute", top: "16px", left: "16px",
+              background: "#fcd400", color: "#5a4a00",
+              padding: "4px 10px", fontWeight: 700, fontSize: "11px",
+              letterSpacing: "0.06em", textTransform: "uppercase",
+              fontFamily: "'Inter', sans-serif", borderRadius: "2px",
+            }}>
+              Προσφορά
+            </div>
+          )}
+        </div>
+
+        {/* Growing top section */}
+        <div style={{ padding: "20px 20px 0", flex: 1, display: "flex", flexDirection: "column" }}>
           <h3 style={{
-            fontSize: '28px',
-            fontWeight: 'bold',
-            color: '#DD1D21',
-            marginBottom: '16px'
+            fontSize: "20px", fontWeight: 600, color: "#1a1c1c",
+            fontFamily: "'Work Sans', sans-serif", marginBottom: "8px", lineHeight: 1.3,
           }}>
             {promotion.title}
           </h3>
-          
-          <p style={{
-            fontSize: '16px',
-            color: '#666',
-            lineHeight: '1.6',
-            marginBottom: '16px'
-          }}>
-            {promotion.description}
-          </p>
-          
-          {/* Valid Dates */}
-          <div style={{
-            background: '#f5f5f5',
-            padding: '12px 16px',
-            borderRadius: '8px',
-            marginBottom: '16px'
-          }}>
+
+          {promotion.discount_text && (
+            <div style={{ marginBottom: "10px" }}>
+              <span style={{
+                fontSize: "28px", fontWeight: 700, color: "#b90014",
+                fontFamily: "'Work Sans', sans-serif", lineHeight: 1.1,
+              }}>
+                {promotion.discount_text}
+              </span>
+            </div>
+          )}
+
+          {promotion.description ? (
             <p style={{
-              fontSize: '14px',
-              color: '#888',
-              margin: 0
+              fontSize: "14px", color: "#5d3f3c", lineHeight: 1.6,
+              fontFamily: "'Inter', sans-serif", flex: 1,
             }}>
-              Valid: {formatDate(promotion.valid_from)} - {formatDate(promotion.valid_until)}
+              {promotion.description}
             </p>
-          </div>
-          
-          {/* Terms */}
-          {promotion.terms && (
-            <details style={{ marginTop: '16px' }}>
-              <summary style={{
-                fontSize: '14px',
-                fontWeight: '600',
-                color: '#DD1D21',
-                cursor: 'pointer',
-                marginBottom: '8px'
-              }}>
-                Terms & Conditions
-              </summary>
-              <p style={{
-                fontSize: '13px',
-                color: '#888',
-                lineHeight: '1.6',
-                marginTop: '8px'
-              }}>
-                {promotion.terms}
-              </p>
-            </details>
+          ) : (
+            <div style={{ flex: 1 }} />
           )}
         </div>
-      </div>
+
+        {/* Fixed bottom zone */}
+        <div style={{ padding: "12px 20px 16px" }}>
+          {(promotion.valid_from || promotion.valid_until) && (
+            <div style={{
+              display: "flex", alignItems: "center", gap: "6px",
+              color: "#5b5b5a", marginBottom: "12px",
+            }}>
+              <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>calendar_today</span>
+              <span style={{ fontSize: "12px", fontFamily: "'Inter', sans-serif", fontWeight: 500 }}>
+                Ισχύει: {formatDate(promotion.valid_from)}{promotion.valid_until ? ` – ${formatDate(promotion.valid_until)}` : ""}
+              </span>
+            </div>
+          )}
+
+          {promotion.terms && (
+            <div style={{ borderTop: "1px solid #eeeeee", paddingTop: "12px" }}>
+              <button
+                onClick={() => setModalOpen(true)}
+                style={{
+                  display: "flex", alignItems: "center", gap: "6px",
+                  background: "none", border: "none", cursor: "pointer",
+                  padding: 0, color: "#b90014", fontWeight: 600, fontSize: "13px",
+                  fontFamily: "'Inter', sans-serif",
+                }}
+              >
+                <span className="material-symbols-outlined" style={{ fontSize: "16px" }}>info</span>
+                Όροι &amp; Προϋποθέσεις
+              </button>
+            </div>
+          )}
+        </div>
+      </article>
+
+      {/* Modal */}
+      {modalOpen && (
+        <div
+          onClick={() => setModalOpen(false)}
+          style={{
+            position: "fixed", inset: 0,
+            background: "rgba(0,0,0,0.55)",
+            zIndex: 100,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "24px",
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#ffffff",
+              borderRadius: "12px",
+              padding: "32px",
+              maxWidth: "480px",
+              width: "100%",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+              position: "relative",
+            }}
+          >
+            {/* Close button */}
+            <button
+              onClick={() => setModalOpen(false)}
+              style={{
+                position: "absolute", top: "16px", right: "16px",
+                background: "#f3f3f3", border: "none", cursor: "pointer",
+                width: "32px", height: "32px", borderRadius: "50%",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                color: "#5b5b5a",
+              }}
+            >
+              <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>close</span>
+            </button>
+
+            <h3 style={{
+              fontSize: "18px", fontWeight: 700, color: "#1a1c1c",
+              fontFamily: "'Work Sans', sans-serif", marginBottom: "6px",
+            }}>
+              {promotion.title}
+            </h3>
+            <p style={{
+              fontSize: "12px", fontWeight: 600, color: "#b90014",
+              fontFamily: "'Inter', sans-serif", textTransform: "uppercase",
+              letterSpacing: "0.06em", marginBottom: "20px",
+            }}>
+              Όροι &amp; Προϋποθέσεις
+            </p>
+
+            <p style={{
+              fontSize: "14px", color: "#5b5b5a", lineHeight: 1.7,
+              fontFamily: "'Inter', sans-serif",
+            }}>
+              {promotion.terms}
+            </p>
+          </div>
+        </div>
+      )}
     </>
   );
 }

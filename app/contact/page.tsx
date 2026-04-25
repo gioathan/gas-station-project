@@ -94,7 +94,7 @@ export default async function ContactPage() {
               letterSpacing: '2px',
               textTransform: 'uppercase'
             }}>
-              Get In Touch
+              Επικοινωνήστε μαζί μας
             </span>
           </div>
           
@@ -106,7 +106,7 @@ export default async function ContactPage() {
             textShadow: '0 4px 12px rgba(0,0,0,0.3)',
             lineHeight: '1.2'
           }}>
-            {contactPage?.hero_title || 'Contact Us'}
+            {contactPage?.hero_title || 'Επικοινωνία'}
           </h1>
           
           <div style={{
@@ -124,7 +124,7 @@ export default async function ContactPage() {
             margin: '0 auto',
             lineHeight: '1.6'
           }}>
-            {contactPage?.hero_subtitle || 'We\'re here to help'}
+            {contactPage?.hero_subtitle || 'Είμαστε εδώ για εσάς'}
           </p>
         </div>
       </div>
@@ -144,7 +144,7 @@ export default async function ContactPage() {
           {/* Phone */}
           <ContactInfoCard
             icon="📞"
-            title="Call Us"
+            title="Τηλεφωνήστε μας"
             value={settings.contact_phone}
             href={`tel:${settings.contact_phone?.replace(/\s/g, '')}`}
           />
@@ -152,7 +152,7 @@ export default async function ContactPage() {
           {/* Email */}
           <ContactInfoCard
             icon="✉️"
-            title="Email Us"
+            title="Email"
             value={settings.contact_email}
             href={`mailto:${settings.contact_email}`}
           />
@@ -179,7 +179,7 @@ export default async function ContactPage() {
               📍
             </div>
             <h3 style={{ fontSize: '20px', fontWeight: 'bold', color: '#1a1a1a', marginBottom: '8px' }}>
-              Visit Us
+              Επισκεφτείτε μας
             </h3>
             <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.6' }}>
               {settings.address}
@@ -196,7 +196,7 @@ export default async function ContactPage() {
           textAlign: 'center'
         }}>
           <h3 style={{ fontSize: '28px', fontWeight: 'bold', color: '#DD1D21', marginBottom: '24px' }}>
-            Opening Hours
+            Ώρες Λειτουργίας
           </h3>
           <div style={{
             display: 'grid',
@@ -207,7 +207,7 @@ export default async function ContactPage() {
           }}>
             <div>
               <p style={{ fontSize: '16px', fontWeight: '600', color: '#1a1a1a', marginBottom: '8px' }}>
-                Weekdays
+                Καθημερινές
               </p>
               <p style={{ fontSize: '18px', color: '#666' }}>
                 {settings.hours_weekday}
@@ -215,7 +215,7 @@ export default async function ContactPage() {
             </div>
             <div>
               <p style={{ fontSize: '16px', fontWeight: '600', color: '#1a1a1a', marginBottom: '8px' }}>
-                Weekend
+                Σαββατοκύριακο
               </p>
               <p style={{ fontSize: '18px', color: '#666' }}>
                 {settings.hours_weekend}

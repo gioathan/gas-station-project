@@ -41,7 +41,7 @@ export default function ContactForm() {
       setTimeout(() => setStatus("idle"), 5000);
     } catch (err: any) {
       setStatus("error");
-      setErrorMessage(err.message || "Failed to send message. Please try again.");
+      setErrorMessage(err.message || "Αποτυχία αποστολής μηνύματος. Παρακαλώ δοκιμάστε ξανά.");
       setTimeout(() => setStatus("idle"), 5000);
     }
   };
@@ -84,10 +84,10 @@ export default function ContactForm() {
             textAlign: "center",
           }}
         >
-          Send Us a Message
+          Στείλτε μας Μήνυμα
         </h2>
         <p style={{ color: "#666", textAlign: "center", marginBottom: "40px", fontSize: "16px" }}>
-          Fill in the form and we&apos;ll get back to you as soon as possible.
+          Συμπληρώστε τη φόρμα και θα επικοινωνήσουμε μαζί σας το συντομότερο.
         </p>
 
         {status === "success" && (
@@ -102,7 +102,7 @@ export default function ContactForm() {
             }}
           >
             <p style={{ color: "#15803d", fontWeight: "600" }}>
-              ✓ Message sent! We&apos;ll get back to you shortly.
+              ✓ Το μήνυμα εστάλη! Θα επικοινωνήσουμε μαζί σας σύντομα.
             </p>
           </div>
         )}
@@ -127,7 +127,7 @@ export default function ContactForm() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
             <div>
               <label style={{ display: "block", fontWeight: "600", color: "#1a1a1a", marginBottom: "6px", fontSize: "14px" }}>
-                Name <span style={{ color: "#DD1D21" }}>*</span>
+                Όνομα <span style={{ color: "#DD1D21" }}>*</span>
               </label>
               <input
                 style={inputStyle}
@@ -135,7 +135,7 @@ export default function ContactForm() {
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                placeholder="Your name"
+                placeholder="Το όνομά σας"
                 required
               />
             </div>
@@ -157,7 +157,7 @@ export default function ContactForm() {
 
           <div>
             <label style={{ display: "block", fontWeight: "600", color: "#1a1a1a", marginBottom: "6px", fontSize: "14px" }}>
-              Phone <span style={{ color: "#999", fontWeight: "400" }}>(optional)</span>
+              Τηλέφωνο <span style={{ color: "#999", fontWeight: "400" }}>(προαιρετικό)</span>
             </label>
             <input
               style={inputStyle}
@@ -171,14 +171,14 @@ export default function ContactForm() {
 
           <div>
             <label style={{ display: "block", fontWeight: "600", color: "#1a1a1a", marginBottom: "6px", fontSize: "14px" }}>
-              Message <span style={{ color: "#DD1D21" }}>*</span>
+              Μήνυμα <span style={{ color: "#DD1D21" }}>*</span>
             </label>
             <textarea
               style={{ ...inputStyle, resize: "vertical", minHeight: "140px" }}
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="How can we help you?"
+              placeholder="Πώς μπορούμε να σας βοηθήσουμε;"
               required
             />
           </div>
@@ -199,19 +199,19 @@ export default function ContactForm() {
               letterSpacing: "0.5px",
             }}
           >
-            {status === "sending" ? "Sending…" : "Send Message"}
+            {status === "sending" ? "Αποστολή…" : "Αποστολή Μηνύματος"}
           </button>
 
           <p style={{ fontSize: "12px", color: "#999", textAlign: "center", margin: 0 }}>
-            Protected by reCAPTCHA.{" "}
+            Προστατεύεται από reCAPTCHA.{" "}
             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style={{ color: "#999" }}>
-              Privacy
+              Απόρρητο
             </a>{" "}
             &{" "}
             <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style={{ color: "#999" }}>
-              Terms
+              Όροι
             </a>{" "}
-            apply.
+            ισχύουν.
           </p>
         </form>
       </section>

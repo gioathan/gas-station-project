@@ -1,6 +1,6 @@
 "use client";
 
-import Image from 'next/image';
+import Image from "next/image";
 
 interface Service {
   id: string;
@@ -16,78 +16,81 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ service }: ServiceCardProps) {
   return (
-    <>
-      <style global jsx>{`
-        .service-card {
-          background: white;
-          border: 1px solid #e0e0e0;
-          border-radius: 12px;
-          overflow: hidden;
-          transition: transform 0.3s, box-shadow 0.3s;
-          cursor: pointer;
-        }
-        
-        .service-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        }
-      `}</style>
-      
-      <div className="service-card">
-        {service.image && (
-          <div style={{ position: 'relative', width: '100%', height: '250px' }}>
-            <Image
-              src={service.image}
-              alt={service.title}
-              width={400}
-              height={250}
-              sizes="(max-width: 768px) 100vw, 400px"
-              quality={80}
-              style={{
-                width: '100%',
-                height: '250px',
-                objectFit: 'cover'
-              }}
-            />
-            <div style={{
-              position: 'absolute',
-              top: '16px',
-              right: '16px',
-              background: '#DD1D21',
-              color: 'white',
-              fontSize: '36px',
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-              zIndex: 1
-            }}>
-              {service.icon}
-            </div>
-          </div>
-        )}
-        
-        <div style={{ padding: '32px' }}>
-          <h3 style={{
-            fontSize: '28px',
-            fontWeight: 'bold',
-            color: '#DD1D21',
-            marginBottom: '16px'
+    <div
+      style={{
+        background: "#ffffff",
+        border: "1px solid #e2e2e2",
+        borderRadius: "8px",
+        overflow: "hidden",
+        transition: "box-shadow 0.25s",
+      }}
+      onMouseOver={(e) => {
+        e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.08)";
+      }}
+      onMouseOut={(e) => {
+        e.currentTarget.style.boxShadow = "none";
+      }}
+    >
+      {/* Image */}
+      {service.image ? (
+        <div style={{ position: "relative", width: "100%", height: "192px", overflow: "hidden" }}>
+          <Image
+            src={service.image}
+            alt={service.title}
+            fill
+            sizes="(max-width: 768px) 100vw, 400px"
+            style={{ objectFit: "cover" }}
+            quality={80}
+          />
+        </div>
+      ) : (
+        <div style={{
+          height: "192px",
+          background: "linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 100%)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <span style={{ fontSize: "56px" }}>{service.icon}</span>
+        </div>
+      )}
+
+      {/* Content */}
+      <div style={{ padding: "24px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px" }}>
+          <span style={{ fontSize: "22px", lineHeight: 1 }}>{service.icon}</span>
+          <span style={{
+            fontWeight: 700,
+            fontSize: "12px",
+            color: "#b90014",
+            letterSpacing: "0.07em",
+            textTransform: "uppercase",
+            fontFamily: "'Inter', sans-serif",
           }}>
             {service.title}
-          </h3>
-          <p style={{
-            fontSize: '16px',
-            color: '#666',
-            lineHeight: '1.6'
-          }}>
-            {service.description}
-          </p>
+          </span>
         </div>
+
+        <h3 style={{
+          fontSize: "22px",
+          fontWeight: 600,
+          color: "#1a1c1c",
+          fontFamily: "'Work Sans', sans-serif",
+          marginBottom: "10px",
+          lineHeight: 1.3,
+        }}>
+          {service.title}
+        </h3>
+
+        <p style={{
+          fontSize: "15px",
+          color: "#5d3f3c",
+          lineHeight: 1.6,
+          fontFamily: "'Inter', sans-serif",
+        }}>
+          {service.description}
+        </p>
       </div>
-    </>
+    </div>
   );
 }

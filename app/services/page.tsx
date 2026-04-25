@@ -2,7 +2,7 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
-import CTAButton from "../components/CTAButton";
+import Link from "next/link";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
@@ -35,136 +35,76 @@ async function getServicesData() {
 
 export async function generateMetadata(): Promise<Metadata> {
   const { servicesPage, settings } = await getServicesData();
-  
   return {
-    title: servicesPage?.meta_title || 'Our Services - X Petroleum',
-    description: servicesPage?.meta_description || 'Premium fuel, car wash, and convenience store services',
-    keywords: servicesPage?.meta_keywords || 'gas station, X Petroleum, fuel, car wash',
+    title: servicesPage?.meta_title || "Our Services - X Petroleum",
+    description: servicesPage?.meta_description || "Premium fuel, car wash, and convenience store services",
+    keywords: servicesPage?.meta_keywords || "gas station, X Petroleum, fuel, car wash",
     openGraph: {
-      title: servicesPage?.og_title || servicesPage?.meta_title || 'Our Services',
-      description: servicesPage?.og_description || servicesPage?.meta_description || 'Premium services',
+      title: servicesPage?.og_title || servicesPage?.meta_title || "Our Services",
+      description: servicesPage?.og_description || servicesPage?.meta_description || "Premium services",
       images: servicesPage?.og_image ? [servicesPage.og_image] : [],
-      type: 'website',
-      siteName: settings.site_name || 'X Petroleum',
+      type: "website",
+      siteName: settings.site_name || "X Petroleum",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: servicesPage?.og_title || servicesPage?.meta_title,
       description: servicesPage?.og_description || servicesPage?.meta_description,
       images: servicesPage?.og_image ? [servicesPage.og_image] : [],
-    }
+    },
   };
 }
-
 
 export default async function ServicesPage() {
   const { pages, servicesPage, services, settings } = await getServicesData();
 
   return (
     <>
-      <StructuredData 
-        type="services" 
-        settings={settings} 
-        pageData={{ services }} 
-      />
+      <StructuredData type="services" settings={settings} pageData={{ services }} />
       <Navbar pages={pages} />
-      
-      {/* Hero Section */}
-      <div style={{
-        background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
-        padding: '100px 24px',
-        position: 'relative',
-        overflow: 'hidden'
+
+      {/* ── Page Header ── */}
+      <section style={{
+        height: "260px",
+        background: "#2a2a2a",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
       }}>
-        {/* Decorative circles */}
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '-50px',
-          width: '200px',
-          height: '200px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.1)',
-          filter: 'blur(40px)'
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '-100px',
-          left: '-100px',
-          width: '300px',
-          height: '300px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.15)',
-          filter: 'blur(60px)'
-        }} />
-        
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(251, 206, 7, 0.2)',
-            padding: '8px 24px',
-            borderRadius: '50px',
-            marginBottom: '24px',
-            border: '2px solid rgba(251, 206, 7, 0.3)'
-          }}>
-            <span style={{
-              color: '#FBCE07',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              letterSpacing: '2px',
-              textTransform: 'uppercase'
-            }}>
-              What We Offer
-            </span>
-          </div>
-          
+        <div style={{ padding: "0 24px", maxWidth: "800px" }}>
           <h1 style={{
-            fontSize: '56px',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '24px',
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            lineHeight: '1.2'
+            fontSize: "48px",
+            fontWeight: 700,
+            color: "#ffffff",
+            fontFamily: "'Work Sans', sans-serif",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            marginBottom: "16px",
           }}>
-            {servicesPage?.hero_title || 'Our Services'}
+            {servicesPage?.hero_title || "Υπηρεσίες μας"}
           </h1>
-          
-          <div style={{
-            width: '80px',
-            height: '4px',
-            background: '#FBCE07',
-            margin: '0 auto 32px',
-            borderRadius: '2px'
-          }} />
-          
           <p style={{
-            fontSize: '20px',
-            color: 'rgba(255, 255, 255, 0.9)',
-            maxWidth: '700px',
-            margin: '0 auto',
-            lineHeight: '1.6'
+            fontSize: "18px",
+            color: "rgba(255,255,255,0.7)",
+            lineHeight: 1.6,
+            fontFamily: "'Inter', sans-serif",
           }}>
-            {servicesPage?.hero_subtitle || 'Everything you need in one stop'}
+            {servicesPage?.hero_subtitle || "Ό,τι χρειάζεσαι σε μία στάση. Υψηλής απόδοσης καύσιμα και υπηρεσίες για τον σύγχρονο οδηγό."}
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Services Grid */}
+      {/* ── Services Grid ── */}
       <section style={{
-        maxWidth: '1400px',
-        margin: '80px auto',
-        padding: '0 24px'
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "80px 24px",
       }}>
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-          gap: '32px'
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+          gap: "24px",
         }}>
           {services?.map((service) => (
             <ServiceCard key={service.id} service={service} />
@@ -172,40 +112,61 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      {servicesPage?.cta_text && (
-        <section style={{
-          background: '#DD1D21',
-          padding: '80px 24px',
-          textAlign: 'center'
+      {/* ── CTA ── */}
+      <section style={{
+        background: "#e31b23",
+        padding: "80px 24px",
+      }}>
+        <div style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: "40px",
         }}>
-          <div style={{
-            maxWidth: '800px',
-            margin: '0 auto'
-          }}>
+          <div style={{ maxWidth: "560px" }}>
             <h2 style={{
-              fontSize: '36px',
-              fontWeight: 'bold',
-              color: 'white',
-              marginBottom: '24px'
+              fontSize: "clamp(24px, 3vw, 32px)",
+              fontWeight: 700,
+              color: "#ffffff",
+              fontFamily: "'Work Sans', sans-serif",
+              letterSpacing: "-0.01em",
+              marginBottom: "12px",
             }}>
-              Ready to experience our services?
+              {"Έτοιμος να δοκιμάσεις τις υπηρεσίες μας;"}
             </h2>
             <p style={{
-              fontSize: '20px',
-              color: 'white',
-              marginBottom: '32px',
-              opacity: 0.9
+              fontSize: "17px",
+              color: "rgba(255,255,255,0.88)",
+              lineHeight: 1.6,
+              fontFamily: "'Inter', sans-serif",
             }}>
-              Visit us today or contact us for more information
+              Επισκέψου μας ή επικοινώνησε με την ομάδα μας για εταιρικές υπηρεσίες και προγράμματα επιβράβευσης.
             </p>
-            <CTAButton 
-              text={servicesPage.cta_text} 
-              link={servicesPage.cta_link || '/contact'} 
-            />
           </div>
-        </section>
-      )}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
+            <Link
+              href={servicesPage?.cta_link || "/contact"}
+              style={{
+                background: "#ffffff",
+                color: "#b90014",
+                padding: "14px 32px",
+                borderRadius: "6px",
+                fontWeight: 700,
+                fontSize: "13px",
+                textDecoration: "none",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              Επικοινωνία
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <Footer settings={settings} />
     </>
