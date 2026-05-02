@@ -135,7 +135,7 @@ export default function Navbar({ pages }: NavbarProps) {
           style={{
             position: "fixed", inset: 0,
             background: "rgba(0,0,0,0.6)",
-            zIndex: 40,
+            zIndex: 50,
           }}
         />
       )}
@@ -145,22 +145,17 @@ export default function Navbar({ pages }: NavbarProps) {
         position: "fixed",
         top: 0, left: 0,
         width: "280px",
-        height: "100vh",
+        height: "100dvh",
         background: "#111111",
         borderRight: "1px solid #252525",
         padding: "24px 20px",
         transform: menuOpen ? "translateX(0)" : "translateX(-100%)",
         transition: "transform 0.3s ease",
-        zIndex: 45,
+        zIndex: 55,
         display: "flex",
         flexDirection: "column",
         overflowY: "auto",
       }}>
-        {/* Logo in mobile menu */}
-        <div style={{ marginBottom: "32px", paddingTop: "8px" }}>
-          <Image src="/logo.png" alt="X Petroleum" width={120} height={45} style={{ objectFit: "contain" }} />
-        </div>
-
         {/* Nav Links */}
         <nav style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
           {pages.filter(p => p.slug !== "contact").map((page) => {
@@ -185,7 +180,7 @@ export default function Navbar({ pages }: NavbarProps) {
                   transition: "all 0.2s",
                 }}
               >
-                {page.title}
+                {greekTitles[page.title] ?? page.title}
               </Link>
             );
           })}

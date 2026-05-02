@@ -55,79 +55,36 @@ export default async function ContactPage() {
       <Navbar pages={pages} />
       
       {/* Hero Section */}
-      <div style={{
-        background: 'linear-gradient(135deg, #DD1D21 0%, #A01518 100%)',
-        padding: '100px 24px',
-        position: 'relative',
-        overflow: 'hidden'
+      <section style={{
+        height: '260px',
+        background: '#2a2a2a',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
       }}>
-        <div style={{
-          position: 'absolute',
-          top: '-50px',
-          right: '-50px',
-          width: '200px',
-          height: '200px',
-          borderRadius: '50%',
-          background: 'rgba(251, 206, 7, 0.1)',
-          filter: 'blur(40px)'
-        }} />
-        
-        <div style={{
-          maxWidth: '1400px',
-          margin: '0 auto',
-          textAlign: 'center',
-          position: 'relative',
-          zIndex: 1
-        }}>
-          <div style={{
-            display: 'inline-block',
-            background: 'rgba(251, 206, 7, 0.2)',
-            padding: '8px 24px',
-            borderRadius: '50px',
-            marginBottom: '24px',
-            border: '2px solid rgba(251, 206, 7, 0.3)'
-          }}>
-            <span style={{
-              color: '#FBCE07',
-              fontSize: '14px',
-              fontWeight: 'bold',
-              letterSpacing: '2px',
-              textTransform: 'uppercase'
-            }}>
-              Επικοινωνήστε μαζί μας
-            </span>
-          </div>
-          
+        <div style={{ padding: '0 24px', maxWidth: '800px' }}>
           <h1 style={{
-            fontSize: '56px',
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: '24px',
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-            lineHeight: '1.2'
+            fontSize: '48px',
+            fontWeight: 700,
+            color: '#ffffff',
+            fontFamily: "'Work Sans', sans-serif",
+            letterSpacing: '-0.02em',
+            lineHeight: 1.1,
+            marginBottom: '16px',
           }}>
             {contactPage?.hero_title || 'Επικοινωνία'}
           </h1>
-          
-          <div style={{
-            width: '80px',
-            height: '4px',
-            background: '#FBCE07',
-            margin: '0 auto 32px',
-            borderRadius: '2px'
-          }} />
-          
           <p style={{
-            fontSize: '20px',
-            color: 'rgba(255, 255, 255, 0.9)',
-            maxWidth: '700px',
-            margin: '0 auto',
-            lineHeight: '1.6'
+            fontSize: '18px',
+            color: 'rgba(255,255,255,0.7)',
+            lineHeight: 1.6,
+            fontFamily: "'Inter', sans-serif",
           }}>
             {contactPage?.hero_subtitle || 'Είμαστε εδώ για εσάς'}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Contact Info & Map Section */}
       <section style={{

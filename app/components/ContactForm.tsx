@@ -70,7 +70,7 @@ export default function ContactForm() {
           background: "white",
           borderRadius: "16px",
           border: "2px solid #e0e0e0",
-          padding: "48px",
+          padding: "clamp(20px, 5vw, 48px)",
           maxWidth: "700px",
           margin: "0 auto 80px",
         }}
@@ -124,7 +124,7 @@ export default function ContactForm() {
         )}
 
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+          <div className="contact-form-grid">
             <div>
               <label style={{ display: "block", fontWeight: "600", color: "#1a1a1a", marginBottom: "6px", fontSize: "14px" }}>
                 Όνομα <span style={{ color: "#DD1D21" }}>*</span>

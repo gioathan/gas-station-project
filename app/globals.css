@@ -194,6 +194,19 @@ a {
   .hero-swiper-wrap .swiper-button-prev { display: none !important; }
 }
 
+/* Contact form responsive grid */
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Footer link hover */
 .footer-link {
   color: #9ca3af;
