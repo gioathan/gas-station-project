@@ -50,7 +50,7 @@ export default function PageHero({ label, title, subtitle }: PageHeroProps) {
           fontSize: "clamp(44px, 8vw, 96px)",
           fontWeight: 900,
           color: "#ffffff",
-          fontFamily: "'Work Sans', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           letterSpacing: "-0.03em",
           lineHeight: 1,
           textTransform: "uppercase",

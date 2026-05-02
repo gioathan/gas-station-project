@@ -92,7 +92,7 @@ export default async function PromotionsPage() {
               fontSize: "28px",
               fontWeight: 700,
               color: "#1a1c1c",
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               marginBottom: "12px",
             }}>
               Δεν υπάρχουν Ενεργές Προσφορές
@@ -137,7 +137,7 @@ export default async function PromotionsPage() {
                 fontSize: "28px",
                 fontWeight: 700,
                 color: "#1a1c1c",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "-0.01em",
                 marginBottom: "10px",
               }}>

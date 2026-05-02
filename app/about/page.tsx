@@ -99,7 +99,7 @@ export default async function AboutPage() {
               fontWeight: 700,
               color: '#b90014',
               marginBottom: '24px',
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               letterSpacing: '-0.01em',
             }}>
               Η Πορεία μας
@@ -129,7 +129,7 @@ export default async function AboutPage() {
               color: '#1a1c1c',
               marginBottom: '8px',
               textAlign: 'center',
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               letterSpacing: '-0.01em',
             }}>
               Γιατί να μας Επιλέξεις
@@ -190,7 +190,7 @@ export default async function AboutPage() {
               fontWeight: 700,
               color: 'white',
               marginBottom: '12px',
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               letterSpacing: '-0.01em',
             }}>
               Επισκέψου μας Σήμερα

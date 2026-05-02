@@ -12,7 +12,7 @@ export default function Footer({ settings }: FooterProps) {
     <footer style={{
       background: "#111111",
       borderTop: "1px solid #252525",
-      fontFamily: "'Work Sans', sans-serif",
+      fontFamily: "'Barlow Condensed', sans-serif",
     }}>
       <div style={{
         maxWidth: "1200px",

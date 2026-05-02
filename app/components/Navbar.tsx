@@ -86,7 +86,7 @@ export default function Navbar({ pages }: NavbarProps) {
                 fontSize: "13px",
                 textDecoration: "none",
                 letterSpacing: "0.04em",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 whiteSpace: "nowrap",
               }}
             >
@@ -174,7 +174,7 @@ export default function Navbar({ pages }: NavbarProps) {
                   borderRadius: "8px",
                   display: "block",
                   background: isActive ? "rgba(252,212,0,0.08)" : "transparent",
-                  fontFamily: "'Work Sans', sans-serif",
+                  fontFamily: "'Barlow Condensed', sans-serif",
                   fontSize: "15px",
                   borderLeft: isActive ? "3px solid #fcd400" : "3px solid transparent",
                   transition: "all 0.2s",
@@ -200,7 +200,7 @@ export default function Navbar({ pages }: NavbarProps) {
               fontSize: "14px",
               textDecoration: "none",
               textAlign: "center",
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               letterSpacing: "0.04em",
               display: "block",
             }}

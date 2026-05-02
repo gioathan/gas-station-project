@@ -25,7 +25,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
             fontSize: "32px",
             fontWeight: 700,
             color: "#1a1c1c",
-            fontFamily: "'Work Sans', sans-serif",
+            fontFamily: "'Barlow Condensed', sans-serif",
             letterSpacing: "-0.01em",
             lineHeight: 1.2,
             marginBottom: "8px",
@@ -79,7 +79,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
                 fontSize: "24px",
                 fontWeight: 600,
                 color: "#1a1c1c",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 lineHeight: 1.3,
                 marginBottom: "16px",      /* mb-sm */
               }}>

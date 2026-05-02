@@ -95,7 +95,7 @@ export default async function HomePage() {
                 fontSize: "clamp(32px, 5vw, 52px)",
                 fontWeight: 800,
                 color: "#ffffff",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
                 marginBottom: "16px",
@@ -143,7 +143,7 @@ export default async function HomePage() {
                 fontSize: "clamp(32px, 5vw, 52px)",
                 fontWeight: 800,
                 color: "#ffffff",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
                 marginBottom: "16px",
@@ -201,7 +201,7 @@ export default async function HomePage() {
                 fontSize: "32px",
                 fontWeight: 700,
                 color: "#1a1c1c",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "-0.01em",
               }}>
                 Τρέχουσες Προσφορές
@@ -279,7 +279,7 @@ export default async function HomePage() {
                       fontSize: "clamp(20px, 2.5vw, 26px)",
                       fontWeight: 700,
                       color: "#ffffff",
-                      fontFamily: "'Work Sans', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       letterSpacing: "-0.01em",
                       marginBottom: "8px",
                     }}>
@@ -290,7 +290,7 @@ export default async function HomePage() {
                         fontSize: "20px",
                         fontWeight: 700,
                         color: "#fcd400",
-                        fontFamily: "'Work Sans', sans-serif",
+                        fontFamily: "'Barlow Condensed', sans-serif",
                         marginBottom: "6px",
                       }}>
                         {promotions[0].discount_text}
@@ -361,12 +361,12 @@ export default async function HomePage() {
                       fontSize: "16px",
                       fontWeight: 700,
                       color: "#ffffff",
-                      fontFamily: "'Work Sans', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                     }}>
                       {promotions[1].title}
                     </h3>
                     {promotions[1].discount_text && (
-                      <p style={{ fontSize: "14px", color: "#fcd400", fontFamily: "'Work Sans', sans-serif", fontWeight: 600 }}>
+                      <p style={{ fontSize: "14px", color: "#fcd400", fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600 }}>
                         {promotions[1].discount_text}
                       </p>
                     )}
@@ -413,7 +413,7 @@ export default async function HomePage() {
                       fontSize: "16px",
                       fontWeight: 700,
                       color: "#ffffff",
-                      fontFamily: "'Work Sans', sans-serif",
+                      fontFamily: "'Barlow Condensed', sans-serif",
                       marginBottom: "4px",
                     }}>
                       {promotions[2].title}
@@ -446,7 +446,7 @@ export default async function HomePage() {
                     fontSize: "18px",
                     fontWeight: 700,
                     color: "#ffffff",
-                    fontFamily: "'Work Sans', sans-serif",
+                    fontFamily: "'Barlow Condensed', sans-serif",
                     marginBottom: "8px",
                   }}>
                     Πρόγραμμα Επιβράβευσης
@@ -471,7 +471,7 @@ export default async function HomePage() {
                 fontSize: "32px",
                 fontWeight: 700,
                 color: "#1a1c1c",
-                fontFamily: "'Work Sans', sans-serif",
+                fontFamily: "'Barlow Condensed', sans-serif",
                 letterSpacing: "-0.01em",
                 lineHeight: 1.2,
                 marginBottom: "32px",

@@ -75,7 +75,7 @@ export default function ServiceCard({ service }: ServiceCardProps) {
           fontSize: "22px",
           fontWeight: 600,
           color: "#1a1c1c",
-          fontFamily: "'Work Sans', sans-serif",
+          fontFamily: "'Barlow Condensed', sans-serif",
           marginBottom: "10px",
           lineHeight: 1.3,
         }}>

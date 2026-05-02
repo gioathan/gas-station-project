@@ -73,7 +73,7 @@ export default function PromotionCard({ promotion }: PromotionCardProps) {
         <div style={{ padding: "20px 20px 0", flex: 1, display: "flex", flexDirection: "column" }}>
           <h3 style={{
             fontSize: "20px", fontWeight: 600, color: "#1a1c1c",
-            fontFamily: "'Work Sans', sans-serif", marginBottom: "8px", lineHeight: 1.3,
+            fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "8px", lineHeight: 1.3,
           }}>
             {promotion.title}
           </h3>
@@ -82,7 +82,7 @@ export default function PromotionCard({ promotion }: PromotionCardProps) {
             <div style={{ marginBottom: "10px" }}>
               <span style={{
                 fontSize: "28px", fontWeight: 700, color: "#b90014",
-                fontFamily: "'Work Sans', sans-serif", lineHeight: 1.1,
+                fontFamily: "'Barlow Condensed', sans-serif", lineHeight: 1.1,
               }}>
                 {promotion.discount_text}
               </span>
@@ -176,7 +176,7 @@ export default function PromotionCard({ promotion }: PromotionCardProps) {
 
             <h3 style={{
               fontSize: "18px", fontWeight: 700, color: "#1a1c1c",
-              fontFamily: "'Work Sans', sans-serif", marginBottom: "6px",
+              fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "6px",
             }}>
               {promotion.title}
             </h3>

@@ -106,7 +106,7 @@ export default async function ServicesPage() {
               fontSize: "clamp(24px, 3vw, 32px)",
               fontWeight: 700,
               color: "#ffffff",
-              fontFamily: "'Work Sans', sans-serif",
+              fontFamily: "'Barlow Condensed', sans-serif",
               letterSpacing: "-0.01em",
               marginBottom: "12px",
             }}>
