@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactInfoCard from "../components/ContactInfoCard";
 import ContactForm from "../components/ContactForm";
+import PageHero from "../components/PageHero";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
@@ -54,37 +55,11 @@ export default async function ContactPage() {
       <StructuredData type="contact" settings={settings} />
       <Navbar pages={pages} />
       
-      {/* Hero Section */}
-      <section style={{
-        height: '260px',
-        background: '#2a2a2a',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-      }}>
-        <div style={{ padding: '0 24px', maxWidth: '800px' }}>
-          <h1 style={{
-            fontSize: '48px',
-            fontWeight: 700,
-            color: '#ffffff',
-            fontFamily: "'Work Sans', sans-serif",
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: '16px',
-          }}>
-            {contactPage?.hero_title || 'Επικοινωνία'}
-          </h1>
-          <p style={{
-            fontSize: '18px',
-            color: 'rgba(255,255,255,0.7)',
-            lineHeight: 1.6,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {contactPage?.hero_subtitle || 'Είμαστε εδώ για εσάς'}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Επικοινωνία"
+        title={contactPage?.hero_title || 'Επικοινωνία'}
+        subtitle={contactPage?.hero_subtitle}
+      />
 
       {/* Contact Info & Map Section */}
       <section style={{

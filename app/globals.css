@@ -194,6 +194,16 @@ a {
   .hero-swiper-wrap .swiper-button-prev { display: none !important; }
 }
 
+/* Page hero padding — responsive */
+.page-hero-section {
+  padding: 48px 24px 64px;
+}
+@media (max-width: 768px) {
+  .page-hero-section {
+    padding: 28px 20px 40px;
+  }
+}
+
 /* Contact form responsive grid */
 .contact-form-grid {
   display: grid;

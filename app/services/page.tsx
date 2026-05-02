@@ -2,6 +2,7 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ServiceCard from "../components/ServiceCard";
+import PageHero from "../components/PageHero";
 import Link from "next/link";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
@@ -63,37 +64,11 @@ export default async function ServicesPage() {
       <StructuredData type="services" settings={settings} pageData={{ services }} />
       <Navbar pages={pages} />
 
-      {/* ── Page Header ── */}
-      <section style={{
-        height: "260px",
-        background: "#2a2a2a",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}>
-        <div style={{ padding: "0 24px", maxWidth: "800px" }}>
-          <h1 style={{
-            fontSize: "48px",
-            fontWeight: 700,
-            color: "#ffffff",
-            fontFamily: "'Work Sans', sans-serif",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-            marginBottom: "16px",
-          }}>
-            {servicesPage?.hero_title || "Υπηρεσίες μας"}
-          </h1>
-          <p style={{
-            fontSize: "18px",
-            color: "rgba(255,255,255,0.7)",
-            lineHeight: 1.6,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {servicesPage?.hero_subtitle || "Ό,τι χρειάζεσαι σε μία στάση. Υψηλής απόδοσης καύσιμα και υπηρεσίες για τον σύγχρονο οδηγό."}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Υπηρεσίες"
+        title={servicesPage?.hero_title || "Υπηρεσίες μας"}
+        subtitle={servicesPage?.hero_subtitle}
+      />
 
       {/* ── Services Grid ── */}
       <section style={{

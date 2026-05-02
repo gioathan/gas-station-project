@@ -2,6 +2,7 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ContactButton from "../components/ContactButton";
+import PageHero from "../components/PageHero";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 
@@ -59,37 +60,11 @@ export default async function AboutPage() {
       />
       <Navbar pages={pages} />
       
-      {/* Page Header */}
-      <section style={{
-        height: '260px',
-        background: '#2a2a2a',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-      }}>
-        <div style={{ padding: '0 24px', maxWidth: '800px' }}>
-          <h1 style={{
-            fontSize: '48px',
-            fontWeight: 700,
-            color: '#ffffff',
-            fontFamily: "'Work Sans', sans-serif",
-            letterSpacing: '-0.02em',
-            lineHeight: 1.1,
-            marginBottom: '16px',
-          }}>
-            {aboutPage?.hero_title || 'Σχετικά με εμάς'}
-          </h1>
-          <p style={{
-            fontSize: '18px',
-            color: 'rgba(255,255,255,0.7)',
-            lineHeight: 1.6,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {aboutPage?.hero_subtitle || 'Εξυπηρετούμε την κοινότητα από το 2010'}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Σχετικά"
+        title={aboutPage?.hero_title || 'Σχετικά με εμάς'}
+        subtitle={aboutPage?.hero_subtitle}
+      />
 
       {/* Main Content */}
       <section style={{

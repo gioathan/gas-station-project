@@ -2,6 +2,7 @@ import { supabaseClient } from "@/lib/supabase";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import PromotionCard from "../components/PromotionsCard";
+import PageHero from "../components/PageHero";
 import Link from "next/link";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
@@ -55,37 +56,11 @@ export default async function PromotionsPage() {
       <StructuredData type="promotions" settings={settings} pageData={{ promotions }} />
       <Navbar pages={pages} />
 
-      {/* ── Page Header ── */}
-      <section style={{
-        height: "260px",
-        background: "#2a2a2a",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-      }}>
-        <div style={{ padding: "0 24px", maxWidth: "800px" }}>
-          <h1 style={{
-            fontSize: "48px",
-            fontWeight: 700,
-            color: "#ffffff",
-            fontFamily: "'Work Sans', sans-serif",
-            letterSpacing: "-0.02em",
-            lineHeight: 1.1,
-            marginBottom: "16px",
-          }}>
-            {promotionsPage?.hero_title || "Τρέχουσες Προσφορές"}
-          </h1>
-          <p style={{
-            fontSize: "18px",
-            color: "rgba(255,255,255,0.7)",
-            lineHeight: 1.6,
-            fontFamily: "'Inter', sans-serif",
-          }}>
-            {promotionsPage?.hero_subtitle || "Εξοικονόμησε με τις ειδικές μας προσφορές. Σχεδιασμένες για τον σύγχρονο ταξιδιώτη."}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        label="Προσφορές"
+        title={promotionsPage?.hero_title || "Τρέχουσες Προσφορές"}
+        subtitle={promotionsPage?.hero_subtitle}
+      />
 
       {/* ── Promotions Grid ── */}
       <section style={{
