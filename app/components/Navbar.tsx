@@ -14,7 +14,7 @@ export default function Navbar({ pages }: NavbarProps) {
   const pathname = usePathname();
 
   const getHref = (slug: string) =>
-    slug === "/" || slug === "" ? "/" : `/${slug}`;
+    slug === "/" || slug === "" || slug.toLowerCase() === "home" ? "/" : `/${slug}`;
 
   const greekTitles: Record<string, string> = {
     "Home": "Αρχική",
@@ -169,11 +169,11 @@ export default function Navbar({ pages }: NavbarProps) {
                 style={{
                   color: isActive ? "#fcd400" : "#d1d5db",
                   textDecoration: "none",
-                  fontWeight: isActive ? 600 : 400,
+                  fontWeight: isActive ? 700 : 400,
                   padding: "12px 16px",
                   borderRadius: "8px",
                   display: "block",
-                  background: isActive ? "rgba(252,212,0,0.08)" : "transparent",
+                  background: isActive ? "rgba(252,212,0,0.12)" : "transparent",
                   fontFamily: "'Barlow Condensed', sans-serif",
                   fontSize: "15px",
                   borderLeft: isActive ? "3px solid #fcd400" : "3px solid transparent",
