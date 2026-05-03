@@ -45,8 +45,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const { contactPage } = await getContactData();
   return {
-    title: loc(contactPage, "meta_title", locale) || "Contact Us - X Petroleum",
-    description: loc(contactPage, "meta_description", locale) || "Get in touch with us",
+    title: loc(contactPage, "meta_title", locale) || (locale === "el" ? "Επικοινωνία – X Petroleum Shell Σπάτα" : "Contact – X Petroleum Shell Station Spata Athens"),
+    description: loc(contactPage, "meta_description", locale) || (locale === "el" ? "Επικοινωνήστε με τον σταθμό Shell X Petroleum στη Σπάτα. Οδηγίες, τηλέφωνο και ώρες λειτουργίας." : "Contact X Petroleum Shell station in Spata, Attica. Directions, phone and opening hours."),
     keywords: contactPage?.meta_keywords,
     openGraph: {
       title: loc(contactPage, "og_title", locale) || loc(contactPage, "meta_title", locale),

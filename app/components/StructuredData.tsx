@@ -13,15 +13,20 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
     "@type": "GasStation",
     "name": settings.site_name || "X Petroleum",
     "image": settings.logo || "",
-    "description": settings.site_description || "Premium fuel and convenience services",
+    "description": settings.site_description || "Authorized Shell dealer in Spata, Athens. Premium Shell fuels, car wash, mini market and 24-hour service.",
     "@id": baseUrl,
     "url": baseUrl,
     "telephone": settings.contact_phone,
     "email": settings.contact_email,
+    "brand": {
+      "@type": "Brand",
+      "name": "Shell"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": settings.address,
-      "addressLocality": settings.city || "",
+      "addressLocality": settings.city || "Spata",
+      "addressRegion": settings.region || "Attica",
       "postalCode": settings.postal_code || "",
       "addressCountry": settings.country || "GR"
     },
@@ -30,6 +35,7 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
       "latitude": settings.latitude,
       "longitude": settings.longitude
     } : undefined,
+    "hasMap": settings.google_maps_embed || undefined,
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
@@ -46,7 +52,16 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
     ],
     "priceRange": "$$",
     "paymentAccepted": "Cash, Credit Card, Debit Card",
-    "currenciesAccepted": "EUR"
+    "currenciesAccepted": "EUR",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Shell Fuels & Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shell V-Power" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shell FuelSave Diesel" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shell FuelSave Unleaded" } }
+      ]
+    }
   };
 
   // Organization schema

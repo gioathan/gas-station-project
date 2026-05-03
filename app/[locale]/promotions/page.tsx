@@ -47,8 +47,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const { promotionsPage } = await getPromotionsData();
   return {
-    title: loc(promotionsPage, "meta_title", locale) || "Current Promotions - X Petroleum",
-    description: loc(promotionsPage, "meta_description", locale) || "Check out our latest deals",
+    title: loc(promotionsPage, "meta_title", locale) || (locale === "el" ? "Προσφορές – X Petroleum Shell Σπάτα" : "Promotions – X Petroleum Shell Station Spata"),
+    description: loc(promotionsPage, "meta_description", locale) || (locale === "el" ? "Τρέχουσες προσφορές καυσίμων Shell και υπηρεσιών στη Σπάτα Αττικής." : "Current Shell fuel and service deals at our station in Spata, Attica."),
     keywords: promotionsPage?.meta_keywords,
     openGraph: {
       title: loc(promotionsPage, "og_title", locale) || loc(promotionsPage, "meta_title", locale),

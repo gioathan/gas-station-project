@@ -4,7 +4,8 @@
     "services": "Services",
     "promotions": "Promotions",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "shellBadge": "Authorized Shell Dealer"
   },
   "footer": {
     "company": "Company",
@@ -12,7 +13,8 @@
     "services": "Services",
     "promotions": "Promotions",
     "contact": "Contact",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "shellDisclaimer": "Shell® is a registered trademark of Shell International B.V. X Petroleum is an independent authorized Shell dealer."
   },
   "home": {
     "heroTitle": "More Than Fuel",

@@ -53,17 +53,31 @@ export default function Navbar({ pages }: NavbarProps) {
           alignItems: "center",
           height: "80px",
         }}>
-          {/* Logo */}
-          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0 }}>
-            <Image
-              src="/logo.png"
-              alt="X Petroleum"
-              width={150}
-              height={56}
-              style={{ objectFit: "contain" }}
-              priority
-            />
-          </Link>
+          {/* Logo + Shell badge */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", flexShrink: 0 }}>
+            <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+              <Image
+                src="/logo.png"
+                alt="X Petroleum"
+                width={150}
+                height={56}
+                style={{ objectFit: "contain" }}
+                priority
+              />
+            </Link>
+            <span style={{
+              fontSize: "9px",
+              fontWeight: 700,
+              color: "#fcd400",
+              letterSpacing: "0.07em",
+              textTransform: "uppercase",
+              fontFamily: "'Inter', sans-serif",
+              lineHeight: 1,
+              paddingLeft: "2px",
+            }}>
+              {t("shellBadge")}
+            </span>
+          </div>
 
           {/* Desktop Nav */}
           <nav className="nav-desktop" style={{ alignItems: "center", gap: "32px" }}>

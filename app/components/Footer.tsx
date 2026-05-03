@@ -59,17 +59,22 @@ export default function Footer({ settings }: FooterProps) {
           </div>
         </div>
 
-        <div style={{ borderTop: "1px solid #252525", paddingTop: "24px", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
-          <p style={{ color: "#6b7280", fontSize: "13px" }}>
-            © {year} {siteName}. {t("rights")}
-          </p>
-          {(settings?.hours_weekday || settings?.hours_weekend) && (
+        <div style={{ borderTop: "1px solid #252525", paddingTop: "24px", display: "flex", flexDirection: "column", gap: "12px" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
             <p style={{ color: "#6b7280", fontSize: "13px" }}>
-              {settings.hours_weekday}
-              {settings.hours_weekday && settings.hours_weekend ? " · " : ""}
-              {settings.hours_weekend}
+              © {year} {siteName}. {t("rights")}
             </p>
-          )}
+            {(settings?.hours_weekday || settings?.hours_weekend) && (
+              <p style={{ color: "#6b7280", fontSize: "13px" }}>
+                {settings.hours_weekday}
+                {settings.hours_weekday && settings.hours_weekend ? " · " : ""}
+                {settings.hours_weekend}
+              </p>
+            )}
+          </div>
+          <p style={{ color: "#4b5563", fontSize: "11px", lineHeight: "1.5" }}>
+            {t("shellDisclaimer")}
+          </p>
         </div>
       </div>
     </footer>

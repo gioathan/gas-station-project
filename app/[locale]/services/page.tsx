@@ -47,8 +47,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const { servicesPage, settings } = await getServicesData();
   return {
-    title: loc(servicesPage, "meta_title", locale) || "Our Services - X Petroleum",
-    description: loc(servicesPage, "meta_description", locale) || "Premium fuel, car wash, and convenience store services",
+    title: loc(servicesPage, "meta_title", locale) || (locale === "el" ? "Υπηρεσίες – X Petroleum Shell Σπάτα" : "Services – X Petroleum Shell Station Spata Athens"),
+    description: loc(servicesPage, "meta_description", locale) || (locale === "el" ? "Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση στη Σπάτα Αττικής." : "Shell V-Power fuels, car wash, mini market and 24-hour service at our Shell station in Spata, Attica."),
     keywords: servicesPage?.meta_keywords,
     openGraph: {
       title: loc(servicesPage, "og_title", locale) || loc(servicesPage, "meta_title", locale),

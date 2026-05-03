@@ -46,8 +46,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const { aboutPage } = await getAboutData();
   return {
-    title: loc(aboutPage, "meta_title", locale) || "About Us - X Petroleum",
-    description: loc(aboutPage, "meta_description", locale) || "Our story and values",
+    title: loc(aboutPage, "meta_title", locale) || (locale === "el" ? "Σχετικά με εμάς – X Petroleum Shell Σπάτα" : "About Us – X Petroleum Authorized Shell Dealer Spata"),
+    description: loc(aboutPage, "meta_description", locale) || (locale === "el" ? "Μάθετε για την X Petroleum, τον εξουσιοδοτημένο αντιπρόσωπο Shell στη Σπάτα Αττικής. Η ιστορία μας και οι αξίες μας." : "Learn about X Petroleum, the authorized Shell dealer in Spata, Attica. Our story, our values and why drivers trust us."),
     keywords: aboutPage?.meta_keywords,
     openGraph: {
       title: loc(aboutPage, "og_title", locale) || loc(aboutPage, "meta_title", locale),

@@ -62,8 +62,8 @@ export async function generateMetadata({
   const { locale } = await params;
   const { homePage } = await getHomeData();
   return {
-    title: loc(homePage, "meta_title", locale) || "Welcome - X Petroleum",
-    description: loc(homePage, "meta_description", locale) || "Premium fuel and services",
+    title: loc(homePage, "meta_title", locale) || (locale === "el" ? "X Petroleum – Εξουσιοδοτημένος Σταθμός Shell, Σπάτα Αθήνα" : "X Petroleum – Authorized Shell Station, Spata Athens"),
+    description: loc(homePage, "meta_description", locale) || (locale === "el" ? "Εξουσιοδοτημένος αντιπρόσωπος Shell στη Σπάτα Αττικής. Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση." : "Authorized Shell dealer in Spata, Attica. Shell V-Power fuels, car wash, mini market and 24-hour service near Athens Airport."),
     keywords: homePage?.meta_keywords,
     openGraph: {
       title: loc(homePage, "og_title", locale) || loc(homePage, "meta_title", locale),

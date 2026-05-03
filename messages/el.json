@@ -4,7 +4,8 @@
     "services": "Υπηρεσίες",
     "promotions": "Προσφορές",
     "about": "Σχετικά",
-    "contact": "Επικοινωνία"
+    "contact": "Επικοινωνία",
+    "shellBadge": "Εξουσιοδοτημένος Αντιπρόσωπος Shell"
   },
   "footer": {
     "company": "Εταιρεία",
@@ -12,7 +13,8 @@
     "services": "Υπηρεσίες",
     "promotions": "Προσφορές",
     "contact": "Επικοινωνία",
-    "rights": "Με επιφύλαξη παντός δικαιώματος."
+    "rights": "Με επιφύλαξη παντός δικαιώματος.",
+    "shellDisclaimer": "Το Shell® είναι σήμα κατατεθέν της Shell International B.V. Η X Petroleum είναι ανεξάρτητος εξουσιοδοτημένος αντιπρόσωπος Shell."
   },
   "home": {
     "heroTitle": "Περισσότερα από Καύσιμα",
