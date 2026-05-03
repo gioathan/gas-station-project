@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 
 interface NavbarProps {
   pages: any[];
@@ -12,17 +12,26 @@ interface NavbarProps {
 export default function Navbar({ pages }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
+  const router = useRouter();
+  const t = useTranslations("nav");
 
-  const getHref = (slug: string) =>
+  const getHref = (slug: string): string =>
     slug === "/" || slug === "" || slug.toLowerCase() === "home" ? "/" : `/${slug}`;
 
-  const greekTitles: Record<string, string> = {
-    "Home": "Αρχική",
-    "Services": "Υπηρεσίες",
-    "Promotions": "Προσφορές",
-    "About": "Σχετικά",
-    "About Us": "Σχετικά",
-    "Contact": "Επικοινωνία",
+  const navKeyMap: Record<string, string> = {
+    "/": t("home"),
+    "": t("home"),
+    "services": t("services"),
+    "promotions": t("promotions"),
+    "about": t("about"),
+    "contact": t("contact"),
+  };
+
+  const getNavLabel = (slug: string) => navKeyMap[slug] ?? slug;
+
+  const switchLocale = (newLocale: string) => {
+    router.replace({ href: pathname, locale: newLocale } as any);
   };
 
   return (
@@ -64,17 +73,17 @@ export default function Navbar({ pages }: NavbarProps) {
               return (
                 <Link
                   key={page.slug}
-                  href={href}
+                  href={href as any}
                   className={isActive ? "nav-link nav-link-active" : "nav-link"}
                 >
-                  {greekTitles[page.title] ?? page.title}
+                  {getNavLabel(page.slug)}
                 </Link>
               );
             })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="nav-desktop" style={{ alignItems: "center" }}>
+          {/* Desktop right side: contact CTA + locale switcher */}
+          <div className="nav-desktop" style={{ alignItems: "center", gap: "12px" }}>
             <Link
               href="/contact"
               style={{
@@ -90,8 +99,35 @@ export default function Navbar({ pages }: NavbarProps) {
                 whiteSpace: "nowrap",
               }}
             >
-              Επικοινωνία
+              {t("contact")}
             </Link>
+
+            {/* Language switcher */}
+            <div style={{ display: "flex", gap: "4px" }}>
+              {(["el", "en"] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => switchLocale(l)}
+                  style={{
+                    background: locale === l ? "#fcd400" : "transparent",
+                    color: locale === l ? "#5a4a00" : "#9ca3af",
+                    border: "1px solid",
+                    borderColor: locale === l ? "#fcd400" : "#3a3a3a",
+                    borderRadius: "4px",
+                    padding: "4px 8px",
+                    fontSize: "11px",
+                    fontWeight: 700,
+                    cursor: "pointer",
+                    letterSpacing: "0.04em",
+                    textTransform: "uppercase",
+                    fontFamily: "'Inter', sans-serif",
+                    transition: "all 0.15s",
+                  }}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Burger Button */}
@@ -109,35 +145,16 @@ export default function Navbar({ pages }: NavbarProps) {
               overflow: "visible",
             }}
           >
-            <span style={{
-              display: "block", width: "24px", height: "2px",
-              background: "#fcd400", transition: "all 0.3s",
-              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
-            }} />
-            <span style={{
-              display: "block", width: "24px", height: "2px",
-              background: "#fcd400", transition: "all 0.3s",
-              opacity: menuOpen ? 0 : 1,
-            }} />
-            <span style={{
-              display: "block", width: "24px", height: "2px",
-              background: "#fcd400", transition: "all 0.3s",
-              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-            }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: "#fcd400", transition: "all 0.3s", transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none" }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: "#fcd400", transition: "all 0.3s", opacity: menuOpen ? 0 : 1 }} />
+            <span style={{ display: "block", width: "24px", height: "2px", background: "#fcd400", transition: "all 0.3s", transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none" }} />
           </button>
         </div>
       </header>
 
       {/* Mobile Overlay */}
       {menuOpen && (
-        <div
-          onClick={() => setMenuOpen(false)}
-          style={{
-            position: "fixed", inset: 0,
-            background: "rgba(0,0,0,0.6)",
-            zIndex: 50,
-          }}
-        />
+        <div onClick={() => setMenuOpen(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", zIndex: 50 }} />
       )}
 
       {/* Mobile Slide-in Menu */}
@@ -156,7 +173,6 @@ export default function Navbar({ pages }: NavbarProps) {
         flexDirection: "column",
         overflowY: "auto",
       }}>
-        {/* Nav Links */}
         <nav style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
           {pages.filter(p => p.slug !== "contact").map((page) => {
             const href = getHref(page.slug);
@@ -164,7 +180,7 @@ export default function Navbar({ pages }: NavbarProps) {
             return (
               <Link
                 key={page.slug}
-                href={href}
+                href={href as any}
                 onClick={() => setMenuOpen(false)}
                 style={{
                   color: isActive ? "#fcd400" : "#d1d5db",
@@ -180,14 +196,39 @@ export default function Navbar({ pages }: NavbarProps) {
                   transition: "all 0.2s",
                 }}
               >
-                {greekTitles[page.title] ?? page.title}
+                {getNavLabel(page.slug)}
               </Link>
             );
           })}
         </nav>
 
-        {/* CTA Button */}
-        <div style={{ marginTop: "32px", paddingBottom: "16px" }}>
+        {/* Mobile locale switcher */}
+        <div style={{ display: "flex", gap: "8px", padding: "16px 16px 8px" }}>
+          {(["el", "en"] as const).map((l) => (
+            <button
+              key={l}
+              onClick={() => { switchLocale(l); setMenuOpen(false); }}
+              style={{
+                background: locale === l ? "#fcd400" : "#252525",
+                color: locale === l ? "#5a4a00" : "#9ca3af",
+                border: "1px solid",
+                borderColor: locale === l ? "#fcd400" : "#3a3a3a",
+                borderRadius: "4px",
+                padding: "6px 12px",
+                fontSize: "12px",
+                fontWeight: 700,
+                cursor: "pointer",
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {l}
+            </button>
+          ))}
+        </div>
+
+        <div style={{ paddingBottom: "16px" }}>
           <Link
             href="/contact"
             onClick={() => setMenuOpen(false)}
@@ -205,7 +246,7 @@ export default function Navbar({ pages }: NavbarProps) {
               display: "block",
             }}
           >
-            Επικοινωνία
+            {t("contact")}
           </Link>
         </div>
       </div>

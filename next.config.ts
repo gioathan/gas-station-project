@@ -1,4 +1,7 @@
 import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
@@ -8,7 +11,7 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'nkznwwnzwvvcjqvgkube.supabase.co',
-        pathname: '/storage/v1/object/public/images/**',
+        pathname: '/storage/v1/object/public/megistanas/**',
       },
       {
         protocol: 'https',
@@ -22,4 +25,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

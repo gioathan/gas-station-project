@@ -25,7 +25,7 @@ export default function PageCreate() {
     const fileName = `${Date.now()}_${sanitizedName}`;
     
     const { error: storageError } = await supabaseClient.storage
-      .from("images")
+      .from("megistanas")
       .upload(fileName, file);
 
     if (storageError) {
@@ -35,7 +35,7 @@ export default function PageCreate() {
     }
 
     const { data: { publicUrl } } = supabaseClient.storage
-      .from("images")
+      .from("megistanas")
       .getPublicUrl(fileName);
 
     formProps.form?.setFieldsValue({

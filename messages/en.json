@@ -1,0 +1,92 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "promotions": "Promotions",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "company": "Company",
+    "about": "About",
+    "services": "Services",
+    "promotions": "Promotions",
+    "contact": "Contact",
+    "rights": "All rights reserved."
+  },
+  "home": {
+    "heroTitle": "More Than Fuel",
+    "heroSubtitle": "Car wash, mini market and 24-hour service for every driver.",
+    "allServices": "All Services",
+    "currentPromotions": "Current Promotions",
+    "allPromotions": "All Promotions",
+    "limitedTime": "Limited Time",
+    "dailyDeal": "Deal of the Day",
+    "loyaltyProgram": "Loyalty Program",
+    "loyaltyDesc": "Earn points on every purchase and unlock exclusive privileges.",
+    "visitUs": "Visit Us",
+    "phone": "Phone",
+    "location": "Location",
+    "hours": "Business Hours",
+    "directions": "Directions",
+    "mapTitle": "Station Location"
+  },
+  "services": {
+    "label": "Services",
+    "heroTitle": "Our Services",
+    "sectionTitle": "Services",
+    "learnMore": "Learn More",
+    "ctaTitle": "Ready to try our services?",
+    "ctaDesc": "Visit us or contact our team for corporate services and loyalty programs.",
+    "contact": "Contact"
+  },
+  "promotions": {
+    "label": "Promotions",
+    "heroTitle": "Current Promotions",
+    "noPromotions": "No Active Promotions",
+    "noPromotionsDesc": "Visit us soon for new promotions!",
+    "learnMoreTitle": "Learn More About Us",
+    "learnMoreDesc": "Discover our story, our values and why our customers trust us for years.",
+    "aboutUs": "About Us",
+    "offer": "Offer",
+    "validFrom": "Valid:",
+    "terms": "Terms & Conditions"
+  },
+  "about": {
+    "label": "About",
+    "heroTitle": "About Us",
+    "ourJourney": "Our Journey",
+    "defaultContent": "We are a family-run X Petroleum station committed to quality service for our community. Our experienced team ensures every customer receives the quality and care they deserve.",
+    "whyUs": "Why Choose Us",
+    "visitToday": "Visit Us Today",
+    "visitDesc": "Feel the difference of quality service and premium fuels"
+  },
+  "contact": {
+    "label": "Contact",
+    "heroTitle": "Contact",
+    "callUs": "Call Us",
+    "visitUs": "Visit Us",
+    "hours": "Business Hours",
+    "weekdays": "Weekdays",
+    "weekends": "Weekends"
+  },
+  "contactForm": {
+    "title": "Send Us a Message",
+    "subtitle": "Fill in the form and we will get back to you as soon as possible.",
+    "success": "Message sent! We will contact you shortly.",
+    "error": "Failed to send message. Please try again.",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "phone": "Phone",
+    "optional": "(optional)",
+    "message": "Message",
+    "messagePlaceholder": "How can we help you?",
+    "sending": "Sending…",
+    "submit": "Send Message",
+    "recaptcha": "Protected by reCAPTCHA.",
+    "privacy": "Privacy",
+    "termsLabel": "Terms",
+    "apply": "apply."
+  }
+}
