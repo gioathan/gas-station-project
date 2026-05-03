@@ -96,7 +96,7 @@ export default async function PromotionsPage({
         ) : (
           <div style={{ textAlign: "center", padding: "80px 24px", background: "#f3f3f3", borderRadius: "12px" }}>
             <span className="material-symbols-outlined" style={{ fontSize: "64px", color: "#e2e2e2", display: "block", marginBottom: "24px" }}>celebration</span>
-            <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "12px" }}>
+            <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", marginBottom: "12px" }}>
               {t("noPromotions")}
             </h2>
             <p style={{ fontSize: "17px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>
@@ -113,7 +113,7 @@ export default async function PromotionsPage({
               <span className="material-symbols-outlined" style={{ fontSize: "44px", color: "#5a4a00" }}>loyalty</span>
             </div>
             <div style={{ flex: 1, minWidth: "240px" }}>
-              <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em", marginBottom: "10px" }}>
+              <h2 style={{ fontSize: "28px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em", marginBottom: "10px" }}>
                 {t("learnMoreTitle")}
               </h2>
               <p style={{ fontSize: "16px", color: "#5b5b5a", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>

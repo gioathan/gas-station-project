@@ -134,7 +134,7 @@ export default async function HomePage({
                 fontSize: "clamp(32px, 5vw, 52px)",
                 fontWeight: 800,
                 color: "#ffffff",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Oswald', sans-serif",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
                 marginBottom: "16px",
@@ -182,7 +182,7 @@ export default async function HomePage({
                 fontSize: "clamp(32px, 5vw, 52px)",
                 fontWeight: 800,
                 color: "#ffffff",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Oswald', sans-serif",
                 letterSpacing: "-0.02em",
                 lineHeight: 1.1,
                 marginBottom: "16px",
@@ -239,7 +239,7 @@ export default async function HomePage({
                 fontSize: "32px",
                 fontWeight: 700,
                 color: "#1a1c1c",
-                fontFamily: "'Barlow Condensed', sans-serif",
+                fontFamily: "'Oswald', sans-serif",
                 letterSpacing: "-0.01em",
               }}>
                 {t("currentPromotions")}
@@ -273,11 +273,11 @@ export default async function HomePage({
                         {t("limitedTime")}
                       </span>
                     )}
-                    <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: "#ffffff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em", marginBottom: "8px" }}>
+                    <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em", marginBottom: "8px" }}>
                       {localizedPromotions[0].title}
                     </h3>
                     {localizedPromotions[0].discount_text && (
-                      <p style={{ fontSize: "20px", fontWeight: 700, color: "#fcd400", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "6px" }}>
+                      <p style={{ fontSize: "20px", fontWeight: 700, color: "#fcd400", fontFamily: "'Oswald', sans-serif", marginBottom: "6px" }}>
                         {localizedPromotions[0].discount_text}
                       </p>
                     )}
@@ -303,11 +303,11 @@ export default async function HomePage({
                         {t("dailyDeal")}
                       </span>
                     )}
-                    <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif" }}>
                       {localizedPromotions[1].title}
                     </h3>
                     {localizedPromotions[1].discount_text && (
-                      <p style={{ fontSize: "14px", color: "#fcd400", fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600 }}>
+                      <p style={{ fontSize: "14px", color: "#fcd400", fontFamily: "'Oswald', sans-serif", fontWeight: 600 }}>
                         {localizedPromotions[1].discount_text}
                       </p>
                     )}
@@ -324,7 +324,7 @@ export default async function HomePage({
                   )}
                   <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "20px" }}>
                     <span className="material-symbols-outlined" style={{ fontSize: "40px", color: "#fcd400", marginBottom: "8px" }}>loyalty</span>
-                    <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "4px" }}>
+                    <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", marginBottom: "4px" }}>
                       {localizedPromotions[2].title}
                     </h3>
                     {localizedPromotions[2].discount_text && (
@@ -337,7 +337,7 @@ export default async function HomePage({
               ) : (
                 <div className="promo-bento-small-2" style={{ position: "relative", overflow: "hidden", border: "1px solid #e2e2e2", borderRadius: "4px", background: "#b90014", display: "flex", flexDirection: "column", justifyContent: "center", padding: "24px" }}>
                   <span className="material-symbols-outlined" style={{ fontSize: "44px", color: "#fcd400", marginBottom: "12px" }}>loyalty</span>
-                  <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#ffffff", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "8px" }}>
+                  <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", marginBottom: "8px" }}>
                     {t("loyaltyProgram")}
                   </h3>
                   <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", lineHeight: 1.5 }}>
@@ -355,7 +355,7 @@ export default async function HomePage({
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div className="visit-us-inner">
             <div className="visit-us-info">
-              <h2 style={{ fontSize: "32px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "32px" }}>
+              <h2 style={{ fontSize: "32px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em", lineHeight: 1.2, marginBottom: "32px" }}>
                 {t("visitUs")}
               </h2>
 

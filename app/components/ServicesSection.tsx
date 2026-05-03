@@ -26,7 +26,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
             fontSize: "32px",
             fontWeight: 700,
             color: "#1a1c1c",
-            fontFamily: "'Barlow Condensed', sans-serif",
+            fontFamily: "'Oswald', sans-serif",
             letterSpacing: "-0.01em",
             lineHeight: 1.2,
             marginBottom: "8px",
@@ -47,7 +47,7 @@ export default function ServicesSection({ services }: ServicesSectionProps) {
               <div style={{ background: "rgba(185,0,20,0.05)", padding: "16px", marginBottom: "24px", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#b90014" }}>
                 <span style={{ fontSize: "36px", lineHeight: 1 }}>{service.icon}</span>
               </div>
-              <h3 style={{ fontSize: "24px", fontWeight: 600, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", lineHeight: 1.3, marginBottom: "16px" }}>
+              <h3 style={{ fontSize: "24px", fontWeight: 600, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", lineHeight: 1.3, marginBottom: "16px" }}>
                 {service.title}
               </h3>
               <p style={{ fontSize: "16px", color: "#5b5b5a", lineHeight: 1.5, marginBottom: "24px", flex: 1, fontFamily: "'Inter', sans-serif" }}>

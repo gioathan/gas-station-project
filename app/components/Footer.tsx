@@ -14,7 +14,7 @@ export default function Footer({ settings }: FooterProps) {
     <footer style={{
       background: "#111111",
       borderTop: "1px solid #252525",
-      fontFamily: "'Barlow Condensed', sans-serif",
+      fontFamily: "'Oswald', sans-serif",
     }}>
       <div style={{
         maxWidth: "1200px",

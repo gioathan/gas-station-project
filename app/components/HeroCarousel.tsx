@@ -56,7 +56,7 @@ export default function HeroCarousel({ slides }: HeroCarouselProps) {
                     fontSize: "clamp(32px, 5vw, 52px)",
                     fontWeight: 800,
                     color: "#ffffff",
-                    fontFamily: "'Barlow Condensed', sans-serif",
+                    fontFamily: "'Oswald', sans-serif",
                     letterSpacing: "-0.02em",
                     lineHeight: 1.1,
                     marginBottom: "16px",

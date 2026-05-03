@@ -54,12 +54,12 @@ export default function PromotionCard({ promotion, locale: localeProp }: Promoti
         </div>
 
         <div style={{ padding: "20px 20px 0", flex: 1, display: "flex", flexDirection: "column" }}>
-          <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "8px", lineHeight: 1.3 }}>
+          <h3 style={{ fontSize: "20px", fontWeight: 600, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", marginBottom: "8px", lineHeight: 1.3 }}>
             {promotion.title}
           </h3>
           {promotion.discount_text && (
             <div style={{ marginBottom: "10px" }}>
-              <span style={{ fontSize: "28px", fontWeight: 700, color: "#b90014", fontFamily: "'Barlow Condensed', sans-serif", lineHeight: 1.1 }}>
+              <span style={{ fontSize: "28px", fontWeight: 700, color: "#b90014", fontFamily: "'Oswald', sans-serif", lineHeight: 1.1 }}>
                 {promotion.discount_text}
               </span>
             </div>
@@ -111,7 +111,7 @@ export default function PromotionCard({ promotion, locale: localeProp }: Promoti
             >
               <span className="material-symbols-outlined" style={{ fontSize: "18px" }}>close</span>
             </button>
-            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Barlow Condensed', sans-serif", marginBottom: "6px" }}>
+            <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#1a1c1c", fontFamily: "'Oswald', sans-serif", marginBottom: "6px" }}>
               {promotion.title}
             </h3>
             <p style={{ fontSize: "12px", fontWeight: 600, color: "#b90014", fontFamily: "'Inter', sans-serif", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "20px" }}>

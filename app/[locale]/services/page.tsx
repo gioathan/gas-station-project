@@ -97,7 +97,7 @@ export default async function ServicesPage({
       <section style={{ background: "#e31b23", padding: "80px 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "40px" }}>
           <div style={{ maxWidth: "560px" }}>
-            <h2 style={{ fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, color: "#ffffff", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em", marginBottom: "12px" }}>
+            <h2 style={{ fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em", marginBottom: "12px" }}>
               {t("ctaTitle")}
             </h2>
             <p style={{ fontSize: "17px", color: "rgba(255,255,255,0.88)", lineHeight: 1.6, fontFamily: "'Inter', sans-serif" }}>

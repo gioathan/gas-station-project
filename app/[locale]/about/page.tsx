@@ -97,7 +97,7 @@ export default async function AboutPage({
             </div>
           )}
           <div>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 36px)", fontWeight: 700, color: "#b90014", marginBottom: "24px", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 36px)", fontWeight: 700, color: "#b90014", marginBottom: "24px", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em" }}>
               {t("ourJourney")}
             </h2>
             <div style={{ fontSize: "clamp(16px, 2vw, 18px)", color: "#666", lineHeight: "1.8", whiteSpace: "pre-wrap" }}>
@@ -108,7 +108,7 @@ export default async function AboutPage({
 
         {localizedValues.length > 0 && (
           <div style={{ background: "#f5f5f5", borderRadius: "12px", padding: "clamp(32px, 5vw, 64px) clamp(24px, 4vw, 48px)", marginBottom: "60px" }}>
-            <h2 style={{ fontSize: "clamp(28px, 4vw, 36px)", fontWeight: 700, color: "#1a1c1c", marginBottom: "8px", textAlign: "center", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontSize: "clamp(28px, 4vw, 36px)", fontWeight: 700, color: "#1a1c1c", marginBottom: "8px", textAlign: "center", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em" }}>
               {t("whyUs")}
             </h2>
             <div style={{ width: "48px", height: "3px", background: "#e31b23", margin: "0 auto 40px" }} />
@@ -132,7 +132,7 @@ export default async function AboutPage({
 
         {aboutPage?.cta_text && (
           <div style={{ background: "#e31b23", borderRadius: "12px", padding: "clamp(32px, 5vw, 56px) clamp(24px, 4vw, 48px)", textAlign: "center" }}>
-            <h2 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: "white", marginBottom: "12px", fontFamily: "'Barlow Condensed', sans-serif", letterSpacing: "-0.01em" }}>
+            <h2 style={{ fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 700, color: "white", marginBottom: "12px", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em" }}>
               {t("visitToday")}
             </h2>
             <p style={{ fontSize: "clamp(16px, 2vw, 17px)", color: "rgba(255, 255, 255, 0.88)", marginBottom: "28px", fontFamily: "'Inter', sans-serif", lineHeight: 1.6 }}>
