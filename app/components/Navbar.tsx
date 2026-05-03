@@ -31,7 +31,7 @@ export default function Navbar({ pages }: NavbarProps) {
   const getNavLabel = (slug: string) => navKeyMap[slug] ?? slug;
 
   const switchLocale = (newLocale: string) => {
-    router.replace({ href: pathname, locale: newLocale } as any);
+    router.replace(pathname ?? "/", { locale: newLocale });
   };
 
   return (

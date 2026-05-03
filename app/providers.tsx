@@ -27,21 +27,37 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             resources={[
               {
                 name: "pages",
+                list: "/admin/pages",
+                create: "/admin/pages/create",
+                edit: "/admin/pages/edit/:id",
               },
               {
                 name: "services",
+                list: "/admin/services",
+                create: "/admin/services/create",
+                edit: "/admin/services/edit/:id",
               },
               {
                 name: "promotions",
+                list: "/admin/promotions",
+                create: "/admin/promotions/create",
+                edit: "/admin/promotions/edit/:id",
               },
               {
                 name: "hero_slides",
+                list: "/admin/hero-slides",
+                create: "/admin/hero-slides/create",
+                edit: "/admin/hero-slides/edit/:id",
               },
               {
                 name: "values",
+                list: "/admin/values",
+                create: "/admin/values/create",
+                edit: "/admin/values/edit/:id",
               },
               {
                 name: "settings",
+                list: "/admin/settings",
               },
             ]}
             options={{
