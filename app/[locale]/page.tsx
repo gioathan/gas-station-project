@@ -268,11 +268,6 @@ export default async function HomePage({
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #1a1a1a 0%, #b90014 100%)" }} />
                   )}
                   <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.2) 55%, transparent 100%)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "48px" }}>
-                    {localizedPromotions[0].discount_text && (
-                      <span style={{ display: "inline-block", background: "#fcd400", color: "#5a4a00", padding: "4px 10px", fontWeight: 700, fontSize: "11px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Inter', sans-serif", width: "fit-content", marginBottom: "10px", borderRadius: "2px" }}>
-                        {t("limitedTime")}
-                      </span>
-                    )}
                     <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", letterSpacing: "-0.01em", marginBottom: "8px" }}>
                       {localizedPromotions[0].title}
                     </h3>
@@ -291,18 +286,22 @@ export default async function HomePage({
               )}
 
               {localizedPromotions[1] && (
-                <div className="promo-bento-small-1" style={{ position: "relative", overflow: "hidden", border: "1px solid #e2e2e2", borderRadius: "4px" }}>
+                <div
+                  className="promo-bento-small-1"
+                  style={{
+                    position: "relative",
+                    overflow: "hidden",
+                    border: "1px solid #e2e2e2",
+                    borderRadius: "4px",
+                    gridRow: localizedPromotions[2] ? undefined : "1 / 3",
+                  }}
+                >
                   {localizedPromotions[1].image ? (
                     <Image src={localizedPromotions[1].image} alt={localizedPromotions[1].title} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} quality={80} />
                   ) : (
                     <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, #1a1a1a 0%, #333 100%)" }} />
                   )}
                   <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "20px" }}>
-                    {localizedPromotions[1].discount_text && (
-                      <span style={{ display: "inline-block", background: "#e31b23", color: "#fff9f8", padding: "3px 8px", fontWeight: 700, fontSize: "10px", letterSpacing: "0.06em", textTransform: "uppercase", fontFamily: "'Inter', sans-serif", width: "fit-content", marginBottom: "6px", borderRadius: "2px" }}>
-                        {t("dailyDeal")}
-                      </span>
-                    )}
                     <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif" }}>
                       {localizedPromotions[1].title}
                     </h3>
@@ -315,7 +314,7 @@ export default async function HomePage({
                 </div>
               )}
 
-              {localizedPromotions[2] ? (
+              {localizedPromotions[2] && (
                 <div className="promo-bento-small-2" style={{ position: "relative", overflow: "hidden", border: "1px solid #e2e2e2", borderRadius: "4px" }}>
                   {localizedPromotions[2].image ? (
                     <Image src={localizedPromotions[2].image} alt={localizedPromotions[2].title} fill sizes="(max-width: 768px) 100vw, 33vw" style={{ objectFit: "cover" }} quality={80} />
@@ -323,7 +322,6 @@ export default async function HomePage({
                     <div style={{ position: "absolute", inset: 0, background: "#b90014" }} />
                   )}
                   <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "20px" }}>
-                    <span className="material-symbols-outlined" style={{ fontSize: "40px", color: "#fcd400", marginBottom: "8px" }}>loyalty</span>
                     <h3 style={{ fontSize: "16px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", marginBottom: "4px" }}>
                       {localizedPromotions[2].title}
                     </h3>
@@ -333,16 +331,6 @@ export default async function HomePage({
                       </p>
                     )}
                   </div>
-                </div>
-              ) : (
-                <div className="promo-bento-small-2" style={{ position: "relative", overflow: "hidden", border: "1px solid #e2e2e2", borderRadius: "4px", background: "#b90014", display: "flex", flexDirection: "column", justifyContent: "center", padding: "24px" }}>
-                  <span className="material-symbols-outlined" style={{ fontSize: "44px", color: "#fcd400", marginBottom: "12px" }}>loyalty</span>
-                  <h3 style={{ fontSize: "18px", fontWeight: 700, color: "#ffffff", fontFamily: "'Oswald', sans-serif", marginBottom: "8px" }}>
-                    {t("loyaltyProgram")}
-                  </h3>
-                  <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)", fontFamily: "'Inter', sans-serif", lineHeight: 1.5 }}>
-                    {t("loyaltyDesc")}
-                  </p>
                 </div>
               )}
             </div>
