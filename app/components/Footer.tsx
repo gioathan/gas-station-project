@@ -64,11 +64,11 @@ export default function Footer({ settings }: FooterProps) {
             <p style={{ color: "#6b7280", fontSize: "13px" }}>
               © {year} {siteName}. {t("rights")}
             </p>
-            {(settings?.hours_weekday || settings?.hours_weekend) && (
+            {(settings?.hours_weekday || settings?.hours_saturday || settings?.hours_sunday) && (
               <p style={{ color: "#6b7280", fontSize: "13px" }}>
-                {settings.hours_weekday}
-                {settings.hours_weekday && settings.hours_weekend ? " · " : ""}
-                {settings.hours_weekend}
+                {[settings.hours_weekday, settings.hours_saturday, settings.hours_sunday]
+                  .filter(Boolean)
+                  .join(" · ")}
               </p>
             )}
           </div>

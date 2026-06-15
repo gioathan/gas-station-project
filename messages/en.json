@@ -70,7 +70,8 @@
     "visitUs": "Visit Us",
     "hours": "Business Hours",
     "weekdays": "Weekdays",
-    "weekends": "Weekends"
+    "saturday": "Saturday",
+    "sunday": "Sunday"
   },
   "contactForm": {
     "title": "Send Us a Message",

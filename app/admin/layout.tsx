@@ -3,6 +3,11 @@
 import { supabaseClient } from "@/lib/supabase";
 import { useRouter, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+
+const allowedEmails = (process.env.NEXT_PUBLIC_ADMIN_ALLOWED_EMAILS ?? "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
 import { Button } from "antd";
 import Providers from "../providers";
 import { 
@@ -26,9 +31,13 @@ export default function AdminLayout({
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
+  const isAllowed = (email: string | undefined) =>
+    !!email && allowedEmails.includes(email.toLowerCase());
+
   useEffect(() => {
-    supabaseClient.auth.getSession().then(({ data: { session } }) => {
-      if (!session) {
+    supabaseClient.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session || !isAllowed(session.user.email)) {
+        if (session) await supabaseClient.auth.signOut();
         router.push("/login");
       } else {
         setUser(session.user);
@@ -37,8 +46,9 @@ export default function AdminLayout({
     });
 
     const { data: { subscription } } = supabaseClient.auth.onAuthStateChange(
-      (_event, session) => {
-        if (!session) {
+      async (_event, session) => {
+        if (!session || !isAllowed(session.user.email)) {
+          if (session) await supabaseClient.auth.signOut();
           router.push("/login");
         } else {
           setUser(session.user);

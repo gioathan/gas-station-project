@@ -26,7 +26,7 @@ export default function PageCreate() {
     
     const { error: storageError } = await supabaseClient.storage
       .from("megistanas")
-      .upload(fileName, file);
+      .upload(fileName, file, { upsert: true });
 
     if (storageError) {
       console.error("Upload error:", storageError);

@@ -114,19 +114,27 @@ export default function SettingsPage() {
 
         <Card title="Business Hours" style={{ marginBottom: "24px" }}>
           <Form.Item
-            label="Weekday Hours"
+            label="Weekday Hours (Mon–Fri)"
             name="hours_weekday"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Mon-Fri: 6:00 AM - 10:00 PM" />
+            <Input placeholder="e.g. 07:00 - 22:00" />
           </Form.Item>
 
           <Form.Item
-            label="Weekend Hours"
-            name="hours_weekend"
+            label="Saturday Hours"
+            name="hours_saturday"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Sat-Sun: 7:00 AM - 9:00 PM" />
+            <Input placeholder="e.g. 07:00 - 22:00" />
+          </Form.Item>
+
+          <Form.Item
+            label="Sunday Hours"
+            name="hours_sunday"
+            rules={[{ required: true }]}
+          >
+            <Input placeholder="e.g. 08:00 - 20:00" />
           </Form.Item>
         </Card>
 

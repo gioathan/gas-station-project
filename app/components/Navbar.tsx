@@ -54,7 +54,7 @@ export default function Navbar({ pages }: NavbarProps) {
           height: "80px",
         }}>
           {/* Logo + Shell badge */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", flexShrink: 0 }}>
+          <div style={{ flexShrink: 0, position: "relative", display: "flex", alignItems: "center" }}>
             <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
               <Image
                 src="/logo.png"
@@ -66,6 +66,9 @@ export default function Navbar({ pages }: NavbarProps) {
               />
             </Link>
             <span style={{
+              position: "absolute",
+              top: "100%",
+              left: "2px",
               fontSize: "9px",
               fontWeight: 700,
               color: "#fcd400",
@@ -73,7 +76,8 @@ export default function Navbar({ pages }: NavbarProps) {
               textTransform: "uppercase",
               fontFamily: "'Inter', sans-serif",
               lineHeight: 1,
-              paddingLeft: "2px",
+              whiteSpace: "nowrap",
+              pointerEvents: "none",
             }}>
               {t("shellBadge")}
             </span>

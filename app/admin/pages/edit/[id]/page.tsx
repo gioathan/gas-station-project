@@ -16,7 +16,7 @@ export default function PageEdit() {
     setUploading(true);
     const sanitizedName = file.name.replace(/\s+/g, "_").replace(/[^\w.-]/g, "").toLowerCase();
     const fileName = `${Date.now()}_${sanitizedName}`;
-    const { error: storageError } = await supabaseClient.storage.from("megistanas").upload(fileName, file);
+    const { error: storageError } = await supabaseClient.storage.from("megistanas").upload(fileName, file, { upsert: true });
     if (storageError) { setUploading(false); return; }
     const { data: { publicUrl } } = supabaseClient.storage.from("megistanas").getPublicUrl(fileName);
     formProps.form?.setFieldsValue({ [fieldName]: publicUrl });

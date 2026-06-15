@@ -378,13 +378,14 @@ export default async function HomePage({
                     </div>
                   </div>
                 )}
-                {(settings.hours_weekday || settings.hours_weekend) && (
+                {(settings.hours_weekday || settings.hours_saturday || settings.hours_sunday) && (
                   <div style={{ display: "flex", gap: "20px", alignItems: "flex-start" }}>
                     <span className="material-symbols-outlined" style={{ color: "#b90014", marginTop: "2px", flexShrink: 0 }}>schedule</span>
                     <div>
                       <p style={{ fontSize: "11px", fontWeight: 600, color: "#5b5b5a", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "4px", fontFamily: "'Inter', sans-serif" }}>{t("hours")}</p>
                       {settings.hours_weekday && <p style={{ fontSize: "18px", color: "#1a1c1c", fontFamily: "'Inter', sans-serif" }}>{settings.hours_weekday}</p>}
-                      {settings.hours_weekend && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>{settings.hours_weekend}</p>}
+                      {settings.hours_saturday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>{settings.hours_saturday}</p>}
+                      {settings.hours_sunday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>{settings.hours_sunday}</p>}
                     </div>
                   </div>
                 )}

@@ -45,9 +45,15 @@ export default function StructuredData({ type, settings, pageData }: StructuredD
       },
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": settings.hours_weekend?.split('-')[0]?.trim() || "07:00",
-        "closes": settings.hours_weekend?.split('-')[1]?.trim() || "21:00"
+        "dayOfWeek": ["Saturday"],
+        "opens": settings.hours_saturday?.split('-')[0]?.trim() || "07:00",
+        "closes": settings.hours_saturday?.split('-')[1]?.trim() || "21:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Sunday"],
+        "opens": settings.hours_sunday?.split('-')[0]?.trim() || "08:00",
+        "closes": settings.hours_sunday?.split('-')[1]?.trim() || "20:00"
       }
     ],
     "priceRange": "$$",

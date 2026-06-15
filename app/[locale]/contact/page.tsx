@@ -103,14 +103,18 @@ export default async function ContactPage({
           <h3 style={{ fontSize: "28px", fontWeight: "bold", color: "#DD1D21", marginBottom: "24px" }}>
             {t("hours")}
           </h3>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "24px", maxWidth: "800px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px", maxWidth: "900px", margin: "0 auto" }}>
             <div>
               <p style={{ fontSize: "16px", fontWeight: "600", color: "#1a1a1a", marginBottom: "8px" }}>{t("weekdays")}</p>
               <p style={{ fontSize: "18px", color: "#666" }}>{settings.hours_weekday}</p>
             </div>
             <div>
-              <p style={{ fontSize: "16px", fontWeight: "600", color: "#1a1a1a", marginBottom: "8px" }}>{t("weekends")}</p>
-              <p style={{ fontSize: "18px", color: "#666" }}>{settings.hours_weekend}</p>
+              <p style={{ fontSize: "16px", fontWeight: "600", color: "#1a1a1a", marginBottom: "8px" }}>{t("saturday")}</p>
+              <p style={{ fontSize: "18px", color: "#666" }}>{settings.hours_saturday}</p>
+            </div>
+            <div>
+              <p style={{ fontSize: "16px", fontWeight: "600", color: "#1a1a1a", marginBottom: "8px" }}>{t("sunday")}</p>
+              <p style={{ fontSize: "18px", color: "#666" }}>{settings.hours_sunday}</p>
             </div>
           </div>
         </div>
