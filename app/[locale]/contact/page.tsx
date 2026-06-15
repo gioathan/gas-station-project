@@ -95,7 +95,9 @@ export default async function ContactPage({
             <h3 style={{ fontSize: "20px", fontWeight: "bold", color: "#1a1a1a", marginBottom: "8px" }}>
               {t("visitUs")}
             </h3>
-            <p style={{ fontSize: "16px", color: "#666", lineHeight: "1.6" }}>{settings.address}</p>
+            <p style={{ fontSize: "16px", color: "#666", lineHeight: "1.6" }}>
+              {(locale === "en" && settings.address_en) ? settings.address_en : settings.address}
+            </p>
           </div>
         </div>
 

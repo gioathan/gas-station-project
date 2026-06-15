@@ -13,6 +13,9 @@
     "services": "Services",
     "promotions": "Promotions",
     "contact": "Contact",
+    "weekdayLabel": "Mon–Fri",
+    "saturdayLabel": "Sat",
+    "sundayLabel": "Sun",
     "rights": "All rights reserved.",
     "shellDisclaimer": "Shell® is a registered trademark of Shell International B.V. X Petroleum is an independent authorized Shell dealer."
   },
@@ -30,6 +33,9 @@
     "phone": "Phone",
     "location": "Location",
     "hours": "Business Hours",
+    "weekdayLabel": "Mon–Fri",
+    "saturdayLabel": "Sat",
+    "sundayLabel": "Sun",
     "directions": "Directions",
     "mapTitle": "Station Location"
   },

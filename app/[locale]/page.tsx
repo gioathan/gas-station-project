@@ -362,7 +362,9 @@ export default async function HomePage({
                     <span className="material-symbols-outlined" style={{ color: "#b90014", marginTop: "2px", flexShrink: 0 }}>location_on</span>
                     <div>
                       <p style={{ fontSize: "11px", fontWeight: 600, color: "#5b5b5a", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "4px", fontFamily: "'Inter', sans-serif" }}>{t("location")}</p>
-                      <p style={{ fontSize: "18px", color: "#1a1c1c", fontFamily: "'Inter', sans-serif" }}>{settings.address}</p>
+                      <p style={{ fontSize: "18px", color: "#1a1c1c", fontFamily: "'Inter', sans-serif" }}>
+                        {(locale === "en" && settings.address_en) ? settings.address_en : settings.address}
+                      </p>
                     </div>
                   </div>
                 )}
@@ -371,16 +373,16 @@ export default async function HomePage({
                     <span className="material-symbols-outlined" style={{ color: "#b90014", marginTop: "2px", flexShrink: 0 }}>schedule</span>
                     <div>
                       <p style={{ fontSize: "11px", fontWeight: 600, color: "#5b5b5a", textTransform: "uppercase", letterSpacing: "0.07em", marginBottom: "4px", fontFamily: "'Inter', sans-serif" }}>{t("hours")}</p>
-                      {settings.hours_weekday && <p style={{ fontSize: "18px", color: "#1a1c1c", fontFamily: "'Inter', sans-serif" }}>{settings.hours_weekday}</p>}
-                      {settings.hours_saturday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>{settings.hours_saturday}</p>}
-                      {settings.hours_sunday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}>{settings.hours_sunday}</p>}
+                      {settings.hours_weekday && <p style={{ fontSize: "18px", color: "#1a1c1c", fontFamily: "'Inter', sans-serif" }}><span style={{ fontWeight: 600 }}>{t("weekdayLabel")}:</span> {settings.hours_weekday}</p>}
+                      {settings.hours_saturday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}><span style={{ fontWeight: 600 }}>{t("saturdayLabel")}:</span> {settings.hours_saturday}</p>}
+                      {settings.hours_sunday && <p style={{ fontSize: "15px", color: "#5b5b5a", fontFamily: "'Inter', sans-serif" }}><span style={{ fontWeight: 600 }}>{t("sundayLabel")}:</span> {settings.hours_sunday}</p>}
                     </div>
                   </div>
                 )}
               </div>
 
               <a
-                href={`https://maps.google.com?q=${encodeURIComponent(settings.address || "X Petroleum")}`}
+                href={settings.google_maps_url || `https://maps.google.com?q=${encodeURIComponent(settings.address || "X Petroleum")}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: "8px", background: "#fcd400", color: "#5a4a00", padding: "12px 32px", borderRadius: "6px", fontWeight: 700, fontSize: "13px", textDecoration: "none", letterSpacing: "0.05em", textTransform: "uppercase", fontFamily: "'Inter', sans-serif" }}

@@ -13,6 +13,9 @@
     "services": "Υπηρεσίες",
     "promotions": "Προσφορές",
     "contact": "Επικοινωνία",
+    "weekdayLabel": "Δευ–Παρ",
+    "saturdayLabel": "Σαβ",
+    "sundayLabel": "Κυρ",
     "rights": "Με επιφύλαξη παντός δικαιώματος.",
     "shellDisclaimer": "Το Shell® είναι σήμα κατατεθέν της Shell International B.V. Η X Petroleum είναι ανεξάρτητος εξουσιοδοτημένος αντιπρόσωπος Shell."
   },
@@ -30,6 +33,9 @@
     "phone": "Τηλέφωνο",
     "location": "Τοποθεσία",
     "hours": "Ώρες Λειτουργίας",
+    "weekdayLabel": "Δευ–Παρ",
+    "saturdayLabel": "Σαβ",
+    "sundayLabel": "Κυρ",
     "directions": "Οδηγίες",
     "mapTitle": "Τοποθεσία Σταθμού"
   },

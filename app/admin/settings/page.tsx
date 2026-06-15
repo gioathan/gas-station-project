@@ -104,11 +104,18 @@ export default function SettingsPage() {
           </Form.Item>
 
           <Form.Item
-            label="Address"
+            label="Address (Greek)"
             name="address"
             rules={[{ required: true }]}
           >
-            <Input placeholder="123 Main Street, Athens" />
+            <Input placeholder="Λεωφ. Σπάτων 123, Σπάτα" />
+          </Form.Item>
+
+          <Form.Item
+            label="Address (English)"
+            name="address_en"
+          >
+            <Input placeholder="123 Spaton Ave, Spata" />
           </Form.Item>
         </Card>
 
@@ -140,9 +147,17 @@ export default function SettingsPage() {
 
         <Card title="Map & Location" style={{ marginBottom: "24px" }}>
           <Form.Item
+            label="Google Maps URL"
+            name="google_maps_url"
+            help="Get this from Google Maps > Share > Copy link — used for the Directions button"
+          >
+            <Input placeholder="https://maps.app.goo.gl/..." />
+          </Form.Item>
+
+          <Form.Item
             label="Google Maps Embed URL"
             name="google_maps_embed"
-            help="Get this from Google Maps > Share > Embed a map"
+            help="Get this from Google Maps > Share > Embed a map — used for the map iframe"
           >
             <TextArea rows={3} placeholder="https://www.google.com/maps/embed?pb=..." />
           </Form.Item>

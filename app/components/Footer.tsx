@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 interface FooterProps {
@@ -7,8 +7,10 @@ interface FooterProps {
 
 export default function Footer({ settings }: FooterProps) {
   const t = useTranslations("footer");
+  const locale = useLocale();
   const year = new Date().getFullYear();
   const siteName = settings?.site_name || "X Petroleum";
+  const address = (locale === "en" && settings?.address_en) ? settings.address_en : settings?.address;
 
   return (
     <footer style={{
@@ -29,9 +31,9 @@ export default function Footer({ settings }: FooterProps) {
             <div style={{ fontSize: "20px", fontWeight: 900, color: "#ffffff", letterSpacing: "-0.02em", textTransform: "uppercase", marginBottom: "12px" }}>
               {siteName}
             </div>
-            {settings?.address && (
+            {address && (
               <p style={{ color: "#9ca3af", fontSize: "14px", lineHeight: "1.6", marginBottom: "8px" }}>
-                {settings.address}
+                {address}
               </p>
             )}
             {settings?.contact_phone && (
@@ -66,9 +68,11 @@ export default function Footer({ settings }: FooterProps) {
             </p>
             {(settings?.hours_weekday || settings?.hours_saturday || settings?.hours_sunday) && (
               <p style={{ color: "#6b7280", fontSize: "13px" }}>
-                {[settings.hours_weekday, settings.hours_saturday, settings.hours_sunday]
-                  .filter(Boolean)
-                  .join(" · ")}
+                {[
+                  settings.hours_weekday && `${t("weekdayLabel")}: ${settings.hours_weekday}`,
+                  settings.hours_saturday && `${t("saturdayLabel")}: ${settings.hours_saturday}`,
+                  settings.hours_sunday && `${t("sundayLabel")}: ${settings.hours_sunday}`,
+                ].filter(Boolean).join(" · ")}
               </p>
             )}
           </div>
