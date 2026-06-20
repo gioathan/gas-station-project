@@ -5,7 +5,7 @@ interface StructuredDataProps {
 }
 
 export default function StructuredData({ type, settings, pageData }: StructuredDataProps) {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://yoursite.com';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.xpetroleum.gr';
 
   // LocalBusiness schema (for homepage and contact)
   const localBusiness = {

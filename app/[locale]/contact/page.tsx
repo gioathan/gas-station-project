@@ -7,6 +7,7 @@ import PageHero from "../../components/PageHero";
 import { Metadata } from "next";
 import StructuredData from "../../components/StructuredData";
 import { getTranslations } from "next-intl/server";
+import { siteUrl, siteName, buildAlternates, buildTwitter } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -44,15 +45,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { contactPage } = await getContactData();
+  const title = loc(contactPage, "meta_title", locale) || (locale === "el" ? "Επικοινωνία – X Petroleum Shell Σπάτα" : "Contact – X Petroleum Shell Station Spata Athens");
+  const description = loc(contactPage, "meta_description", locale) || (locale === "el" ? "Επικοινωνήστε με τον σταθμό Shell X Petroleum στη Σπάτα. Οδηγίες, τηλέφωνο και ώρες λειτουργίας." : "Contact X Petroleum Shell station in Spata, Attica. Directions, phone and opening hours.");
+  const ogImage = contactPage?.og_image;
   return {
-    title: loc(contactPage, "meta_title", locale) || (locale === "el" ? "Επικοινωνία – X Petroleum Shell Σπάτα" : "Contact – X Petroleum Shell Station Spata Athens"),
-    description: loc(contactPage, "meta_description", locale) || (locale === "el" ? "Επικοινωνήστε με τον σταθμό Shell X Petroleum στη Σπάτα. Οδηγίες, τηλέφωνο και ώρες λειτουργίας." : "Contact X Petroleum Shell station in Spata, Attica. Directions, phone and opening hours."),
+    title,
+    description,
     keywords: contactPage?.meta_keywords,
+    alternates: buildAlternates(locale, "/contact"),
     openGraph: {
-      title: loc(contactPage, "og_title", locale) || loc(contactPage, "meta_title", locale),
-      description: loc(contactPage, "og_description", locale) || loc(contactPage, "meta_description", locale),
-      images: contactPage?.og_image ? [contactPage.og_image] : [],
+      title: loc(contactPage, "og_title", locale) || title,
+      description: loc(contactPage, "og_description", locale) || description,
+      images: ogImage ? [ogImage] : [],
+      type: "website",
+      url: `${siteUrl}/contact`,
+      siteName,
+      locale: locale === "el" ? "el_GR" : "en_US",
     },
+    twitter: buildTwitter(title, description, ogImage),
   };
 }
 

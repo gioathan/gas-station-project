@@ -6,6 +6,7 @@ import PageHero from "../../components/PageHero";
 import { Metadata } from "next";
 import StructuredData from "../../components/StructuredData";
 import { getTranslations } from "next-intl/server";
+import { siteUrl, siteName, buildAlternates, buildTwitter } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -45,15 +46,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { aboutPage } = await getAboutData();
+  const title = loc(aboutPage, "meta_title", locale) || (locale === "el" ? "Σχετικά με εμάς – X Petroleum Shell Σπάτα" : "About Us – X Petroleum Authorized Shell Dealer Spata");
+  const description = loc(aboutPage, "meta_description", locale) || (locale === "el" ? "Μάθετε για την X Petroleum, τον εξουσιοδοτημένο αντιπρόσωπο Shell στη Σπάτα Αττικής. Η ιστορία μας και οι αξίες μας." : "Learn about X Petroleum, the authorized Shell dealer in Spata, Attica. Our story, our values and why drivers trust us.");
+  const ogImage = aboutPage?.og_image;
   return {
-    title: loc(aboutPage, "meta_title", locale) || (locale === "el" ? "Σχετικά με εμάς – X Petroleum Shell Σπάτα" : "About Us – X Petroleum Authorized Shell Dealer Spata"),
-    description: loc(aboutPage, "meta_description", locale) || (locale === "el" ? "Μάθετε για την X Petroleum, τον εξουσιοδοτημένο αντιπρόσωπο Shell στη Σπάτα Αττικής. Η ιστορία μας και οι αξίες μας." : "Learn about X Petroleum, the authorized Shell dealer in Spata, Attica. Our story, our values and why drivers trust us."),
+    title,
+    description,
     keywords: aboutPage?.meta_keywords,
+    alternates: buildAlternates(locale, "/about"),
     openGraph: {
-      title: loc(aboutPage, "og_title", locale) || loc(aboutPage, "meta_title", locale),
-      description: loc(aboutPage, "og_description", locale) || loc(aboutPage, "meta_description", locale),
-      images: aboutPage?.og_image ? [aboutPage.og_image] : [],
+      title: loc(aboutPage, "og_title", locale) || title,
+      description: loc(aboutPage, "og_description", locale) || description,
+      images: ogImage ? [ogImage] : [],
+      type: "website",
+      url: `${siteUrl}/about`,
+      siteName,
+      locale: locale === "el" ? "el_GR" : "en_US",
     },
+    twitter: buildTwitter(title, description, ogImage),
   };
 }
 

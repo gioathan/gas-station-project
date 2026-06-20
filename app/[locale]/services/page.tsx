@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Metadata } from "next";
 import StructuredData from "../../components/StructuredData";
 import { getTranslations } from "next-intl/server";
+import { siteUrl, siteName, buildAlternates, buildTwitter } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -46,17 +47,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { servicesPage, settings } = await getServicesData();
+  const title = loc(servicesPage, "meta_title", locale) || (locale === "el" ? "Υπηρεσίες – X Petroleum Shell Σπάτα" : "Services – X Petroleum Shell Station Spata Athens");
+  const description = loc(servicesPage, "meta_description", locale) || (locale === "el" ? "Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση στη Σπάτα Αττικής." : "Shell V-Power fuels, car wash, mini market and 24-hour service at our Shell station in Spata, Attica.");
+  const ogImage = servicesPage?.og_image;
   return {
-    title: loc(servicesPage, "meta_title", locale) || (locale === "el" ? "Υπηρεσίες – X Petroleum Shell Σπάτα" : "Services – X Petroleum Shell Station Spata Athens"),
-    description: loc(servicesPage, "meta_description", locale) || (locale === "el" ? "Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση στη Σπάτα Αττικής." : "Shell V-Power fuels, car wash, mini market and 24-hour service at our Shell station in Spata, Attica."),
+    title,
+    description,
     keywords: servicesPage?.meta_keywords,
+    alternates: buildAlternates(locale, "/services"),
     openGraph: {
-      title: loc(servicesPage, "og_title", locale) || loc(servicesPage, "meta_title", locale),
-      description: loc(servicesPage, "og_description", locale) || loc(servicesPage, "meta_description", locale),
-      images: servicesPage?.og_image ? [servicesPage.og_image] : [],
+      title: loc(servicesPage, "og_title", locale) || title,
+      description: loc(servicesPage, "og_description", locale) || description,
+      images: ogImage ? [ogImage] : [],
       type: "website",
-      siteName: settings.site_name || "X Petroleum",
+      url: `${siteUrl}/services`,
+      siteName: settings.site_name || siteName,
+      locale: locale === "el" ? "el_GR" : "en_US",
     },
+    twitter: buildTwitter(title, description, ogImage),
   };
 }
 

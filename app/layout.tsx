@@ -1,5 +1,11 @@
 import "./globals.css";
 import { getLocale } from "next-intl/server";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.xpetroleum.gr"),
+  themeColor: "#b90014",
+};
 
 export default async function RootLayout({
   children,

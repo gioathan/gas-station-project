@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { Metadata } from "next";
 import StructuredData from "../../components/StructuredData";
 import { getTranslations } from "next-intl/server";
+import { siteUrl, siteName, buildAlternates, buildTwitter } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -46,15 +47,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { promotionsPage } = await getPromotionsData();
+  const title = loc(promotionsPage, "meta_title", locale) || (locale === "el" ? "Προσφορές – X Petroleum Shell Σπάτα" : "Promotions – X Petroleum Shell Station Spata");
+  const description = loc(promotionsPage, "meta_description", locale) || (locale === "el" ? "Τρέχουσες προσφορές καυσίμων Shell και υπηρεσιών στη Σπάτα Αττικής." : "Current Shell fuel and service deals at our station in Spata, Attica.");
+  const ogImage = promotionsPage?.og_image;
   return {
-    title: loc(promotionsPage, "meta_title", locale) || (locale === "el" ? "Προσφορές – X Petroleum Shell Σπάτα" : "Promotions – X Petroleum Shell Station Spata"),
-    description: loc(promotionsPage, "meta_description", locale) || (locale === "el" ? "Τρέχουσες προσφορές καυσίμων Shell και υπηρεσιών στη Σπάτα Αττικής." : "Current Shell fuel and service deals at our station in Spata, Attica."),
+    title,
+    description,
     keywords: promotionsPage?.meta_keywords,
+    alternates: buildAlternates(locale, "/promotions"),
     openGraph: {
-      title: loc(promotionsPage, "og_title", locale) || loc(promotionsPage, "meta_title", locale),
-      description: loc(promotionsPage, "og_description", locale) || loc(promotionsPage, "meta_description", locale),
-      images: promotionsPage?.og_image ? [promotionsPage.og_image] : [],
+      title: loc(promotionsPage, "og_title", locale) || title,
+      description: loc(promotionsPage, "og_description", locale) || description,
+      images: ogImage ? [ogImage] : [],
+      type: "website",
+      url: `${siteUrl}/promotions`,
+      siteName,
+      locale: locale === "el" ? "el_GR" : "en_US",
     },
+    twitter: buildTwitter(title, description, ogImage),
   };
 }
 

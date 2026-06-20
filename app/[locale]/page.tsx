@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 import StructuredData from "../components/StructuredData";
 import { getTranslations } from "next-intl/server";
+import { siteUrl, siteName, buildAlternates, buildTwitter } from "@/lib/seo";
 
 export const revalidate = 3600;
 
@@ -61,16 +62,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const { homePage } = await getHomeData();
+  const title = loc(homePage, "meta_title", locale) || (locale === "el" ? "X Petroleum – Εξουσιοδοτημένος Σταθμός Shell, Σπάτα Αθήνα" : "X Petroleum – Authorized Shell Station, Spata Athens");
+  const description = loc(homePage, "meta_description", locale) || (locale === "el" ? "Εξουσιοδοτημένος αντιπρόσωπος Shell στη Σπάτα Αττικής. Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση." : "Authorized Shell dealer in Spata, Attica. Shell V-Power fuels, car wash, mini market and 24-hour service near Athens Airport.");
+  const ogImage = homePage?.og_image;
   return {
-    title: loc(homePage, "meta_title", locale) || (locale === "el" ? "X Petroleum – Εξουσιοδοτημένος Σταθμός Shell, Σπάτα Αθήνα" : "X Petroleum – Authorized Shell Station, Spata Athens"),
-    description: loc(homePage, "meta_description", locale) || (locale === "el" ? "Εξουσιοδοτημένος αντιπρόσωπος Shell στη Σπάτα Αττικής. Καύσιμα Shell V-Power, πλυντήριο, mini market και 24ωρη εξυπηρέτηση." : "Authorized Shell dealer in Spata, Attica. Shell V-Power fuels, car wash, mini market and 24-hour service near Athens Airport."),
+    title,
+    description,
     keywords: homePage?.meta_keywords,
+    alternates: buildAlternates(locale),
     openGraph: {
-      title: loc(homePage, "og_title", locale) || loc(homePage, "meta_title", locale),
-      description: loc(homePage, "og_description", locale) || loc(homePage, "meta_description", locale),
-      images: homePage?.og_image ? [homePage.og_image] : [],
+      title: loc(homePage, "og_title", locale) || title,
+      description: loc(homePage, "og_description", locale) || description,
+      images: ogImage ? [ogImage] : [],
       type: "website",
+      url: siteUrl,
+      siteName,
+      locale: locale === "el" ? "el_GR" : "en_US",
     },
+    twitter: buildTwitter(title, description, ogImage),
   };
 }
 
