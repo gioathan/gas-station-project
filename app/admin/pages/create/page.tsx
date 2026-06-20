@@ -129,9 +129,9 @@ export default function PageCreate() {
         <Form.Item
           label="Meta Title (Browser Tab)"
           name="meta_title"
-          help="50-60 characters recommended"
+          help="50-70 characters recommended"
         >
-          <Input placeholder="About Us | Shell Gas Station" maxLength={60} />
+          <Input placeholder="About Us | Shell Gas Station" maxLength={70} />
         </Form.Item>
 
         <Form.Item

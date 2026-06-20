@@ -135,7 +135,7 @@ export default function PageEdit() {
               label: "🇬🇷 Greek",
               children: (
                 <>
-                  <Form.Item label="Meta Title (Greek)" name="meta_title"><Input maxLength={60} /></Form.Item>
+                  <Form.Item label="Meta Title (Greek)" name="meta_title"><Input maxLength={70} /></Form.Item>
                   <Form.Item label="Meta Description (Greek)" name="meta_description"><TextArea rows={3} maxLength={160} /></Form.Item>
                   <Form.Item label="OG Title (Greek)" name="og_title"><Input /></Form.Item>
                   <Form.Item label="OG Description (Greek)" name="og_description"><TextArea rows={2} /></Form.Item>
@@ -147,7 +147,7 @@ export default function PageEdit() {
               label: "🇬🇧 English",
               children: (
                 <>
-                  <Form.Item label="Meta Title (English)" name="meta_title_en"><Input maxLength={60} /></Form.Item>
+                  <Form.Item label="Meta Title (English)" name="meta_title_en"><Input maxLength={70} /></Form.Item>
                   <Form.Item label="Meta Description (English)" name="meta_description_en"><TextArea rows={3} maxLength={160} /></Form.Item>
                   <Form.Item label="OG Title (English)" name="og_title_en"><Input /></Form.Item>
                   <Form.Item label="OG Description (English)" name="og_description_en"><TextArea rows={2} /></Form.Item>
